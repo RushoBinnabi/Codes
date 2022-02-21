@@ -22,7 +22,6 @@ int main() { /* the main() function has the "main" code that's needed for my pro
     printf("\nThe celsius conversion is %0.2f degrees celsius\n", converttoCelsius(inputTemperature)); // using the printf() function, it shows the converted celsius equivalent of the temperature formatted to 2 decimal places from inputTemperature using the convertToCelsius() function and inputTemperature as it's argument.
     printf("\nThe fahrenheit conversion is %0.2f degrees fahrenheit\n\n", converttoFahrenheit(inputTemperature)); // using the printf() function, it shows the converted fahrenheit equivalent of the temperature formatted to 2 decimal places from inputTemperature using the convertToFahrenheit() function and inputTemperature as it's argument.
 
-    system("pause"); // this makes sure the program doesn't suddenly end after running.
     return 0; // the program returns a 0 which means that the program was successful.
 
 } /* the end of the main() function. */
