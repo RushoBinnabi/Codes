@@ -8,7 +8,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <conio.h>
 
 int main() { /* the main() function has the code that's needed for my program to run. */
 
@@ -35,7 +34,6 @@ int main() { /* the main() function has the code that's needed for my program to
         printf("\nThe celsius conversion is %0.2f degrees celsius\n\n", converttoCelsius(temperature)); fflush(stdout); // displays the celsius conversion of the temperature that the user entered as a float rounded to 3 decimal places. It flushes the buffer at the end.
     } // the end of the else if statement.
 
-    getch(); // calls the getch() function which waits for the user to press a key so the program doesn't suddenly end and so the user can see the output without it stopping before they can.
     return 0; // returns a 0 which means the program was successful.
 } /* the end of the main() function. */
 
