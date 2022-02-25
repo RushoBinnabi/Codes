@@ -2,7 +2,7 @@
 * Name: Rusho Binnabi
 * Date: 2/20/2022
 * Project: Pricer
-* Code File Update: 2/20/2022 at 8:35 PM
+* Code File Update: 2/24/2022 at 8:38 PM
 * Contact Information: RushoBinnabi123@yahoo.com or 518-364-7101
 */
 
@@ -25,22 +25,22 @@ int main() { /* the main() funtion has all the code that's needed for my program
 
     char *choice; // creates a char pointer to a char variable called choice which will be used to output either the taxed or discounted price based on what the user wants.
 
-    printf("\nEnter a price: $"); // prompts the user to enter a price.
+    printf("\nEnter a price: $"); fflush(stdout); // prompts the user to enter a price. It flushes the buffer at the end.
     scanf("%f", &inputPrice); // scans the price input from the user as a float and stores it inside inputPrice.
 
-    printf("\nDo you want to calculate tax or discount for this price (t/d): "); // prompts the user to select whether they want to calculate the price of an item after tax.
+    printf("\nDo you want to calculate tax or discount for this price (t/d): "); fflush(stdout); // prompts the user to select whether they want to calculate the price of an item after tax. It flushes the buffer at the end.
     scanf("%s", choice); // scans the choice input from the user as a string and stores it inside choice.
 
     if (*choice == 't') { // deferences the choice pointer to access the value stored inside choice and checks to see if the value is a t. If it is, then it runs the code inside the if statement.
-        printf("\nEnter tax rate: "); // prompts the user to enter a tax rate.
+        printf("\nEnter tax rate: "); fflush (stdout); // prompts the user to enter a tax rate. It flushes the buffer at the end.
         scanf("%f", &rate); // scans the tax rate input from the user as a float and stores it inside rate.
-        printf("\nThe final of the item after taxes is $%0.2f\n\n", priceTax(inputPrice, rate)); // using the priceTax() function and inputPrice and rate as it's two float arguments, it displays the final price of an item after tax formatted to 2 decimal places.
+        printf("\nThe final of the item after taxes is $%0.2f\n\n", priceTax(inputPrice, rate)); fflush(stdout); // using the priceTax() function and inputPrice and rate as it's two float arguments, it displays the final price of an item after tax formatted to 2 decimal places. It flushes the buffer at the end.
     } // the end of the if statement. 
 
     else if (*choice == 'd') { // deferences the choice pointer to access the value stored inside choice and checks to see if the value is a d. If it is, then it runs the code inside the else if statement.
-        printf("\nEnter discount rate: "); // prompts the user to enter a discount rate.
+        printf("\nEnter discount rate: "); fflush(stdout); // prompts the user to enter a discount rate. It flushes the buffer at the end.
         scanf("%f", &rate); // scans the tax rate input from the user as a float and stores it inside rate.
-        printf("\nThe final of the item after discounts is $%0.2f\n\n", priceDiscount(inputPrice, rate)); // using the priceDiscount() function and inputPrice and rate as it's two float arguments, it displays the final price of an item after discount formatted to 2 decimal places.
+        printf("\nThe final of the item after discounts is $%0.2f\n\n", priceDiscount(inputPrice, rate)); fflush(stdout); // using the priceDiscount() function and inputPrice and rate as it's two float arguments, it displays the final price of an item after discount formatted to 2 decimal places. It flushes the buffer at the end.
     } // the end of the else if statement.
 
     getch(); // calls the getch() function which waits for a key press from the user before exiting the program.
