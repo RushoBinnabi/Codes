@@ -8,7 +8,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <conio.h>
 
 /* this program calculates the price of an item given the initial and the tax or discount rate. */
 
@@ -43,7 +42,6 @@ int main() { /* the main() funtion has all the code that's needed for my program
         printf("\nThe final of the item after discounts is $%0.2f\n\n", priceDiscount(inputPrice, rate)); fflush(stdout); // using the priceDiscount() function and inputPrice and rate as it's two float arguments, it displays the final price of an item after discount formatted to 2 decimal places. It flushes the buffer at the end.
     } // the end of the else if statement.
 
-    getch(); // calls the getch() function which waits for a key press from the user before exiting the program.
     return 0; // returns a 0 which means there were no errors and the program was successful.
     
 } /* the end of the main() function. */
