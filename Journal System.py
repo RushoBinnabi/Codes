@@ -9,7 +9,7 @@ import os # imports the os module for use in this program.
 import glob # import the glob module for use in this program.
 import time # imports the time module for use in this program.
 
-# this program acts as a journal system where it can create, read, and list journal entries. 
+# this program acts as a journal system where it can create, read, list, and delete journal entries. 
 
 def writeJournals(name): # this writeJournals() function takes a variable  called name as the argument which is the name of the journal entry files as a string.
                          # this function creates and writes new journal entries using the argument name as the file name of the journal entry as a string.
