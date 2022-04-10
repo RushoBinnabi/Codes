@@ -1,7 +1,7 @@
 # Name: Rusho Binnabi
 # Date: 4/10/2022
 # Project: Journal System
-# Code File Updated: 4/10/2022 at 1:35 PM
+# Code File Updated: 4/10/2022 at 2:37 PM
 # Contact Information: RushoBinnabi23@yahoo.com or 518-364-7101
 
 import sys # imports the sys module for use in this program.
@@ -28,7 +28,7 @@ def writeJournals(name): # this writeJournals() function takes a variable  calle
     except FileNotFoundError: # the code inside the except statement will run if the file that was specified in name doesn't exist.
         print("\nError. That journal entry doesn't exist.") # tells the user that the journal entry doesn't exist.
 
-def readJournals(name): # this readJournals() function takes a variable called name as the argument which is  the name of the journal entry files as a string.
+def readJournals(name): # this readJournals() function takes a variable called name as the argument which is the name of the journal entry file as a string.
                         # this function reads the contents of the journal entries using the argument name as the file name of the journal entry as a string.
     try: # the try block will try to run the code.
         file = open(name, "r") # creates a variable called file and by using the open() function, it will open the file specified in name in read mode so the contents of the file can be read.
@@ -48,8 +48,16 @@ def listing(): # this listing() function lists the number of journal entry files
     print("\nSaved Journal Entries:\n") # tells the user how many number of journal entries are saved.
     for file in glob.glob("*.txt"): # creates a for loop for every file that ends with the .txt extension using the glob() function from the glob module.
         print(file) # prints the name of the current file.
+    
+def deleteJournals(name): # this deleteJournals() function takes a variable called name as the argument which is the name of the journal entry file as a string.
+                          # this function deletes the journal entry file using the argument name as the file name of the journal entry as a string.
+    file = open(name, "r") # creates a variable called file and by using the open() function, it will open the file specified in name in read mode so the name of the file can be read.
+    fileName = file.name # creates a variable called fileName which will have the name of the file inside file.
+    file.close() # using the close() function, it closes file.
+    os.remove(name) # using the rmeove() function of the os module and name as it's argument, it removes the file that was specified in name.
+    print("\n" + "Journal entry: " + fileName + " deleted.\n") # tells the user that the journal entry file inside file was deleted.
 
-userInput = input("\nJournal System\n\n1: Create Journal Entry\n2: Read Journal Entry\n3: Exit\n4: List Journal Entries and Location\n\nEnter Choice: ") # prompts the user to enter a number which corresponds to a command and saves that number inside the userInput variable that was created.
+userInput = input("\nJournal System\n\n1: Create Journal Entry\n2: Read Journal Entry\n3: Exit\n4: List Journal Entries and Location\n5: Remove Journal Entry\n\nEnter Choice: ") # prompts the user to enter a number which corresponds to a command and saves that number inside the userInput variable that was created.
 
 while userInput != 3: # the code in the while loop will run as long as the user didn't enter a "3" that's stored inside userInput which means the user is done using the program.
     if userInput == "1": # if the value inside userInput is equal to 1, then the code inside the if statement will be run.
@@ -65,6 +73,10 @@ while userInput != 3: # the code in the while loop will run as long as the user 
 
     elif userInput == "4": # or if the value inside userInput is equal to 4, then the code inside the elif statement will be run.
         listing() # calls the listing() function.
+    
+    elif userInput == "5": # or if the value inside userInput is equal to 5, then the code inside the elif statement will be run.
+        name = input("\nEnter journal entry name: ") # prompts the user to enter a name for the journal entry file which will be deleted and saves that input in the name variale that was created.
+        deleteJournals(name) # calls the deleteJournals() function and uses name as it's argument.
 
     time.sleep(2) # slows down the execution speed of the program by 2 seconds using the sleep() function of the time module using the integer value of 2 as it's argument.
 
@@ -72,6 +84,6 @@ while userInput != 3: # the code in the while loop will run as long as the user 
     choice = choice.lower() # the values inside choice will in lowercase.
 
     if choice == "y": # if the value inside choice was a "y" which means the user wants to use the program again, then the code inside the if statement will be run.
-        userInput = input("\nJournal System\n\n1: Create Journal Entry\n2: Read Journal Entry\n3: Exit\n4: List Journal Entries and Location\n\nEnter Choice: ") # prompts the user to enter a number again which corresponds to a command and saves that number inside the userInput variable that was created. 
+        userInput = input("\nJournal System\n\n1: Create Journal Entry\n2: Read Journal Entry\n3: Exit\n4: List Journal Entries and Location\n5: Remove Journal Entry\n\nEnter Choice: ") # prompts the user to enter a number again which corresponds to a command and saves that number inside the userInput variable that was created. 
     elif choice == "n": # or if the value inside choice was a "n" which means the user doesn't want to use the program again, then the code inside the elif statement will be run.
         sys.exit(0) # using the exit() function from the sys module and the integer value of 0 which means the program stopped succesfully.
