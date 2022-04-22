@@ -1,6 +1,6 @@
 # Name: Rusho Binnabi
 # Date: 4/10/2022
-# Project: Journal Syste2
+# Project: Journal System
 # Code File Updated: 4/20/2022 at 7:10 PM
 # Contact Information: RushoBinnabi23@yahoo.com or 518-364-7101
 
