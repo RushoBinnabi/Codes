@@ -1,7 +1,9 @@
-import os
-import JournalSystemRead
-import time
-import JournalSystem
+import os # imports the os module for use in this program.
+import JournalSystemRead # imports the code file from JournalSystemRead for use in this program.
+import time # imports the time module for use in this program.
+import JournalSystem # imports the code file from JournalSystem for use in this program.
+
+# this program will have the code needed to read the journal entries as a function which will be used in the main Journal System program.
 
 def journalSystemReadProcess(): # this journalSystemReadProcess() function reads the journal entries.
     name = input("\nEnter journal entry name: ") # prompts the user to enter a name for the journal entry file whose contents will be read and saves that input in the name variale that was created.
