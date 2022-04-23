@@ -1,7 +1,9 @@
-import os
-import time
-import JournalSystem
-import JournalSystemExit
+import os # imports the os module for use in this program.
+import time # imports the time module for use in this program.
+import JournalSystem # imports the code file from JournalSystem for use in this program.
+import JournalSystemExit # imports the code file from JournalSystemExit for use in this program.
+
+# this program will have the code needed to exit the Journal System program as a function that will be used in the main Journal System program.
 
 def journalSystemExitProcess(): # this journalSystemExitProcess() function exits the program.
     endTime3 = time.time() # creates a variable called endTime3 which will have the end of the execution time in seconds.
