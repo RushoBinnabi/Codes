@@ -1,7 +1,9 @@
-import os
-import JournalSystemListing
-import time
-import JournalSystem
+import os # imports the os module for use in this program.
+import JournalSystemListing # imports the code file from JournalSystemListing for use in this program.
+import time # imports the time module for use in this program.
+import JournalSystem # imports the code file from JournalSystem for use in this program.
+
+# this program will have the code needed to list where the Journal System program is saved at and to list the journal entries as a function that will be used in the main Journal System program.
 
 def journalSystemListingProcess(): # this journalSystemListingProcess() function lists all the journal entries.
     time.sleep(2) # slows down the execution speed of the program by 1 second using the sleep() function of the time module and the integer value of 1 as it's argument.
