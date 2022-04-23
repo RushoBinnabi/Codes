@@ -1,5 +1,5 @@
-import os
-import JournalSystem
+import os # imports the os module for use in this program.
+import JournalSystem # imports the 
 import time
 import JournalSystemDelete
 
