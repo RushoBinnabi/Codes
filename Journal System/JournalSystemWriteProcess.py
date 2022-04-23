@@ -3,6 +3,8 @@ import time # imports the time module for use in this program.
 import JournalSystemWrite # imports the code file from JournalSystemWrite for use in this program.
 import JournalSystem # imports the code file from JournalSystem for use in this program.
 
+# this program will have the code needed to write journal entries as a function that will be used in the main Journal System prorgam.
+
 def journalSystemWriteProcess(): # this journalSystemWriteProcess() function creates and writes journal entries.
     name = input("\nEnter journal entry name: ") # prompts the user to enter a name for the journal entry file that will be created and saves that input in the name variable that was created.
     JournalSystemWrite.writeJournals(name) # calls the writeJournals() function from the JournalSystemWrite file and uses name as it's argument.
