@@ -58,7 +58,7 @@ void fileInformation(char file[MAX_FILE_NAME_LENGTH]) {
             else if (character == '\n') { // or if the value of the current character inside character is equal to a new line character then it runs the code inside the else if statement.
                 lines++; // the value of lines gets increased by 1.
                 characters = characters - 2; // the value of characters is equal to itself minus 2 since it's not counting the new line characters.
-                if (lines == 2) { // if the value of lines is equal to 2, then it runs the code inside the if statement.
+                if (lines >= 2) { // if the value of lines is greater than or equal to 2, then it runs the code inside the if statement.
                     paragraph++; // the value of paragraph gets increased by 1.
                     whiteSpaceCharacters++; // the value of whiteSpaceCharacters gets increased by 1.
                     lines = 0; // the value of lines gets set to 0.
