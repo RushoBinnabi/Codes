@@ -139,7 +139,7 @@ int main() {
 
     fileInformation(fileName); // calls the fileInformation() function using fileName as it's argument.
 
-     clockEnd = clock(); // clockEnd will have the time value of the cpu clock after the end of the fileInformation() function using the clock() function.
+    clockEnd = clock(); // clockEnd will have the time value of the cpu clock after the end of the fileInformation() function using the clock() function.
 
     executionTime = ((double) (clockEnd - clockStart)) / CLOCKS_PER_SEC; // executionTime will have the subtracted value of clockEnd and clockStart divided by CLOCKS_PER_SEC as a double.
     
