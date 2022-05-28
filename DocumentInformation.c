@@ -139,11 +139,11 @@ int main() {
 
     fileInformation(fileName); // calls the fileInformation() function using fileName as it's argument.
 
-    memset(fileName, 0, sizeof fileName); // empties the contents of fileName by using the 0 character to empty the array and using the size of fileName via the memset() function.
-    
-    clockEnd = clock(); // clockEnd will have the time value of the cpu clock after the end of the fileInformation() function using the clock() function.
+     clockEnd = clock(); // clockEnd will have the time value of the cpu clock after the end of the fileInformation() function using the clock() function.
 
     executionTime = ((double) (clockEnd - clockStart)) / CLOCKS_PER_SEC; // executionTime will have the subtracted value of clockEnd and clockStart divided by CLOCKS_PER_SEC as a double.
+    
+    memset(fileName, 0, sizeof fileName); // empties the contents of fileName by using the 0 character to empty the array and using the size of fileName via the memset() function.
 
     //printf("Execution Time: %f seconds\n\n", executionTime); // for debugging purposes. shows the time it took for the function to run using executionTime in seconds and as a floating-point number.
 
