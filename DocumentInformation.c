@@ -2,7 +2,7 @@
  * @file DocumentInformation.c
  * @author Rusho Binnabi
  * @date 2022-05-27
- * Code File Updated: 5/27/2022 at 6:54 PM
+ * Code File Updated: 5/28/2022 at 11:51 PM
  * Contact Information: RushoBinnabi123@yahoo.com or 518-364-7101
  */
 
@@ -34,6 +34,7 @@ int quotationMarks; // creates an integer variable called quotationMarks.
 int parenthesis; // creates an integer variable called parenthesis.
 int squareBraces; // creates an integer variable called squareBraces.
 int squareBrackets; // creates an integer variable called squareBrackets.
+int words; // creates an integer variable called words.
 char fileName[MAX_FILE_NAME_LENGTH]; // creates a char array called fileName with a size of MAX_FILE_NAME_LENGTH.
 
 /**
@@ -104,6 +105,10 @@ void fileInformation(char file[MAX_FILE_NAME_LENGTH]) {
                 characters--; // the value of characters gets decreased by 1 since it's not counting the square brackets.
                 squareBrackets++; // the value of squareBrackets gets increased by 1.
             } // the end of the else if statement.
+            //else if (character == ' ' || character == '\n') { // or if the value of the current character inside character is equal to either not a new line character or a new line character, then it runs the code inside the else if statement.
+                //characters--; // the value of characters gets decreased by 1 since it's counting actual words.
+                //words++; // the value of words gets increased by 1.
+            //} // the end of the else if statement.
         } // the end of the while loop. 
     } // the end of the else statement.
     fclose(filePointer); // using the fclose() function, it closes filePointer.
@@ -122,6 +127,7 @@ void fileInformation(char file[MAX_FILE_NAME_LENGTH]) {
     printf("\nNumber of Parenthesis: %d", parenthesis); // shows the user the number of parenthesis inside the file from file.
     printf("\nNumber of Square Braces: %d", squareBraces); // shows the user the number of square braces inside the file from file.
     printf("\nNumber of Square Brackets: %d\n\n", squareBrackets); // shows the user the number of square brackets inside the file from file.
+    //printf("\nNumber of Words: %d\n\n", words); // shows the user the number of words inside the file from file.
     memset(file, 0, sizeof file); // empties the contents of file by using the 0 character to empty the array using the size of file via the memset() function.
 } // the end of the fileInformation() function.
 
