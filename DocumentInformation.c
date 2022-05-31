@@ -48,7 +48,7 @@ void fileInformation(char file[MAX_FILE_NAME_LENGTH]) {
     filePointer = fopen(file, "r"); // filePointer will have the file from file opened in read mode.
     if (filePointer == NULL) { // if the contents of filePointer is NULL/empty, then it runs the code inside the if statement.
         printf("\nError. The file %s is empty or doesn't exist. Please try again.\n\n", file); // tells the user that the file inside file is either empty or doesn't exist and tells the user to try again.
-        exit(1); // exits the program with a code of 0 which means something went wrong.
+        exit(1); // exits the program with a code of 1 which means something went wrong.
     } // the end of the if statement.
     else { // otherwise, it runs the code inside  the else statement.
         while ((character = fgetc(filePointer)) != EOF) { // the code inside the while loop runs as long as the value of character using the fgetc() function and filePointer as it's argument isn't equal to the end of the file.
