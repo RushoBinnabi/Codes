@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class TextToLeetSpeakConverter {
+    
+    // this TextToLeetSpeakConverter converts text entered by the user to its LeetSpeak equivalent and vice versa.
 
     HashMap<Character, String> leets;
     File f;
