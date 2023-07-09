@@ -7,6 +7,7 @@
 
 import subprocess
 
+# this outputDatatoFile() function outputs all the WiFi Usernames and Passwords to a text file.
 
 def outputDatatoFile():
     data = subprocess.check_output(['netsh', 'wlan', 'show', 'profiles']).decode('utf-8', errors="backslashreplace").split('\n')                                                                                                              
@@ -30,6 +31,7 @@ def outputDatatoFile():
     print()
     input("")
 
+# this outputDatatoConsole() function outputs all the WiFi Usernames and Passwords to the console.
 
 def outputDatatoConsole():
     data = subprocess.check_output(['netsh', 'wlan', 'show', 'profiles']).decode('utf-8', errors="backslashreplace").split('\n')                                  
