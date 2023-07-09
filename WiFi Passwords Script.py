@@ -1,6 +1,7 @@
 # Name: Rusho Binnabi
 # Date: 7/8/2023
 # Project: WiFi Password Script
+# Code File Updated: 7/8/2023 at 8:45 PM
 # Contact Information: RushoBinnabi123@yahoo.com
 
 # this code script file will get all the WiFi names and their passwords as profiles that this computer has connected to in the past and is connected to at the moment and puts that data into a text file or prints it out to the console depending on what the user wants.
