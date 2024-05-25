@@ -17,7 +17,7 @@ public class JournalSystem extends Application {
     private final Button viewJournalEntriesButton = new Button();
     private final Button deleteJournalEntriesButton = new Button();
     private final Button readJournalEntryButton = new Button();
-    private final Button editJournalEntryButton = new Button();
+    private final Button openJournalEntryButton = new Button();
 
     public Journal getJournal() {
         return journal;
@@ -47,8 +47,8 @@ public class JournalSystem extends Application {
         return readJournalEntryButton;
     }
 
-    public Button getEditJournalEntryButton() {
-        return editJournalEntryButton;
+    public Button getOpenJournalEntryButton() {
+        return openJournalEntryButton;
     }
 
     @Override
@@ -56,9 +56,9 @@ public class JournalSystem extends Application {
         getCreateJournalEntryButton().setText("Create Journal Entry");
         getViewJournalEntriesButton().setText("View Journal Entries");
         getDeleteJournalEntriesButton().setText("Delete Journal Entry");
-        getEditJournalEntryButton().setText("Edit Journal Entry");
+        getOpenJournalEntryButton().setText("Open Journal Entry");
         getReadJournalEntryButton().setText("Read Journal Entry");
-        getButtons().getChildren().addAll(getCreateJournalEntryButton(), getReadJournalEntryButton(), getViewJournalEntriesButton(), getEditJournalEntryButton(), getDeleteJournalEntriesButton());
+        getButtons().getChildren().addAll(getCreateJournalEntryButton(), getReadJournalEntryButton(), getViewJournalEntriesButton(), getOpenJournalEntryButton(), getDeleteJournalEntriesButton());
         getButtons().setAlignment(Pos.CENTER);
         getWelcomeScreen().getChildren().addAll(getButtons());
         Scene welcomeScreenScene = new Scene(getWelcomeScreen(), 800, 500);

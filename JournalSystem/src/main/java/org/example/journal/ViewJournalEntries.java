@@ -1,13 +1,13 @@
 package org.example.journal;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.io.File;
 
 public class ViewJournalEntries extends Application {
 
@@ -15,8 +15,8 @@ public class ViewJournalEntries extends Application {
     private final GridPane viewJournalEntriesScreen = new GridPane();
     private String viewJournalEntriesNames;
     private final TextArea viewJournalEntries = new TextArea();
-    private final HBox viewJournalEntriesHBox = new HBox();
     private final Journal journal = new Journal();
+    private final VBox vbox = new VBox();
 
     public Button getBackToMainMenu() {
         return backToMainMenu;
@@ -28,10 +28,6 @@ public class ViewJournalEntries extends Application {
 
     public String getViewJournalEntriesNames() {
         return viewJournalEntriesNames;
-    }
-
-    public HBox getViewJournalEntriesHBox() {
-        return viewJournalEntriesHBox;
     }
 
     public TextArea getViewJournalEntries() {
@@ -46,12 +42,26 @@ public class ViewJournalEntries extends Application {
         return journal;
     }
 
+    public VBox getVbox() {
+        return vbox;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        // continue here.
+        getViewJournalEntries().setEditable(false);
+        getBackToMainMenu().setText("Back to Main Menu");
+        getVbox().getChildren().addAll(getViewJournalEntries(), getBackToMainMenu());
+        getVbox().setAlignment(Pos.CENTER);
+        getVbox().setSpacing(18);
+        getViewJournalEntriesScreen().add(getVbox(), 0, 0);
+        getViewJournalEntriesScreen().setAlignment(Pos.CENTER);
+        Scene scene = new Scene(getViewJournalEntriesScreen(), 800, 500);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Journal System - View Journal Entries");
+        primaryStage.show();
     }
 }

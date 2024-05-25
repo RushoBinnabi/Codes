@@ -22,6 +22,7 @@ public class CreateJournalEntry extends Application {
     private final GridPane createJournalEntryScreen = new GridPane();
     private final HBox createJournalEntryInputHBox = new HBox();
     private final HBox createJournalEntryButtonsHBox = new HBox();
+    private final Label createJournalEntryConfirmation = new Label();
 
     public Button getCreateJournalEntry() {
         return createJournalEntry;
@@ -49,6 +50,10 @@ public class CreateJournalEntry extends Application {
 
     public HBox getCreateJournalEntryButtonsHBox() {
         return createJournalEntryButtonsHBox;
+    }
+
+    public Label getCreateJournalEntryConfirmation() {
+        return createJournalEntryConfirmation;
     }
 
     public static void main(String[] args) {
