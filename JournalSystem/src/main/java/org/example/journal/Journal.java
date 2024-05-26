@@ -17,6 +17,8 @@ public class Journal {
     private File fileHandler;
     private FileReader fileReader;
     private FileWriter fileWriter;
+    private String errorMessage;
+    private String readJournalEntry;
 
 
     /**
@@ -97,5 +99,83 @@ public class Journal {
 
     public void setFileWriter(FileWriter fileWriter) {
         this.fileWriter = fileWriter;
+    }
+
+    /**
+     * this getErrorMessage() method gets the error message if anything goes wrong with creating a journal entry.
+     * @return the error message.
+     */
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    /**
+     * this setErrorMessage() method sets the error message if anything goes wrong with creating a journal entry.
+     * @param errorMessage the error message being set.
+     */
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    /**
+     * this getReadJournalEntry() method gets the text that was read from the journal entry.
+     * @return the text that was read from the journal entry.
+     */
+
+    public String getReadJournalEntry() {
+        return readJournalEntry;
+    }
+
+    /**
+     * this setReadJournalEntry() method sets the text that was read from the journal entry.
+     * @param readJournalEntry the text that was read from the journal entry being set.
+     */
+
+    public void setReadJournalEntry(String readJournalEntry) {
+        this.readJournalEntry += readJournalEntry;
+    }
+
+    /**
+     * this createJournalEntry() method creates a journal entry.
+     * @param name the name of the journal entry.
+     * @param contents the contents that will be written to the journal entry.
+     * @return the name of the journal entry that had contents written to it.
+     */
+
+    public String createJournalEntry(String name, String contents) {
+        setJournalEntryName(name);
+        try {
+            setFileHandler(new File(getJournalEntryName()));
+            setFileWriter(new FileWriter(getFileHandler()));
+            getFileWriter().write(contents);
+            getFileWriter().close();
+        }
+        catch (Exception e) {
+            setErrorMessage("Error. The journal entry could not be created.");
+        }
+        return getJournalEntryName();
+    }
+
+    /**
+     * this readJournalEntry() method reads a journal entry.
+     * @param name the name of the journal entry.
+     * @return what was read from the journal entry.
+     */
+
+    public String readJournalEntry(String name) {
+        setJournalEntryName(name);
+        try {
+            setFileHandler(new File(getJournalEntryName()));
+            setFileReader(new FileReader(getFileHandler()));
+            while (getFileReader().read() != -1) {
+                // add this functionality.
+            }
+        }
+        catch (Exception e) {
+            setErrorMessage("Error. The journal entry could not be read.");
+        }
+        return getReadJournalEntry();
     }
 }

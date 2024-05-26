@@ -19,7 +19,6 @@ public class DeleteJournalEntry extends Application {
     private String viewJournalEntriesNames;
     private final TextArea viewJournalEntries = new TextArea();
     private final Journal journal = new Journal();
-    private final VBox vbox = new VBox();
     private final Button deleteJournalEntryButton = new Button();
     private final HBox buttonsHbox = new HBox();
     private final TextField deleteJournalEntryTextField = new TextField();
@@ -55,10 +54,6 @@ public class DeleteJournalEntry extends Application {
 
     public HBox getButtonsHbox() {
         return buttonsHbox;
-    }
-
-    public VBox getVbox() {
-        return vbox;
     }
 
     public Label getDeleteJournalEntryLabel() {
