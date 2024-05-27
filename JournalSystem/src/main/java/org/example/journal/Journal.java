@@ -8,6 +8,7 @@
 package org.example.journal;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Journal {
 
@@ -19,6 +20,7 @@ public class Journal {
     private FileWriter fileWriter;
     private String errorMessage;
     private String readJournalEntry;
+    private final ArrayList<String> listOfFiles = new ArrayList<>();
 
 
     /**
@@ -138,6 +140,15 @@ public class Journal {
     }
 
     /**
+     * this getListOfFiles() method gets the arraylist of files.
+     * @return the arraylist of files.
+     */
+
+    public ArrayList<String> getListOfFiles() {
+        return listOfFiles;
+    }
+
+    /**
      * this createJournalEntry() method creates a journal entry.
      * @param name the name of the journal entry.
      * @param contents the contents that will be written to the journal entry.
@@ -154,6 +165,7 @@ public class Journal {
         }
         catch (Exception e) {
             setErrorMessage("Error. The journal entry could not be created.");
+            return getErrorMessage();
         }
         return getJournalEntryName();
     }
@@ -170,12 +182,37 @@ public class Journal {
             setFileHandler(new File(getJournalEntryName()));
             setFileReader(new FileReader(getFileHandler()));
             while (getFileReader().read() != -1) {
-                // add this functionality.
+                // To-Do: add this functionality.
             }
         }
         catch (Exception e) {
             setErrorMessage("Error. The journal entry could not be read.");
+            return getErrorMessage();
         }
         return getReadJournalEntry();
+    }
+
+    /**
+     * this viewJournalEntries() method views the journal entries.
+     * @return the list of journal entries.
+     */
+
+    public ArrayList<String> viewJournalEntries() {
+        try {
+            setFileHandler(new File(System.getProperty("user.dir")));
+            File[] files = getFileHandler().listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.getName().endsWith(".txt")) {
+                        getListOfFiles().add(file.getName());
+                    }
+                }
+            }
+        }
+        catch (Exception e) {
+            setErrorMessage("Error. The journal entries could not be viewed.");
+            // To-Do: try to make sure the error message gets returned if something goes wrong.
+        }
+        return getListOfFiles();
     }
 }
