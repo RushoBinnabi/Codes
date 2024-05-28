@@ -9,17 +9,18 @@ package org.example.journal;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Journal {
 
     // this Journal file has the name and the functionality of the journal files that will be used for the journal entries.
 
-    private String journalEntryName;
-    private File fileHandler;
-    private FileReader fileReader;
+    private static String journalEntryName;
+    private static File fileHandler;
+    private static FileReader fileReader;
     private FileWriter fileWriter;
-    private String errorMessage;
-    private String readJournalEntry;
+    private static String errorMessage;
+    private static String readJournalEntry;
     private final ArrayList<String> listOfFiles = new ArrayList<>();
 
 
@@ -36,7 +37,7 @@ public class Journal {
      * @return the name of the journal entry.
      */
 
-    public String getJournalEntryName() {
+    public static String getJournalEntryName() {
         return journalEntryName;
     }
 
@@ -45,8 +46,8 @@ public class Journal {
      * @param journalEntryName the name of the journal entry being set.
      */
 
-    public void setJournalEntryName(String journalEntryName) {
-        this.journalEntryName = journalEntryName.concat(".txt"); // adds a text file extension so that users won't have to.
+    public static void setJournalEntryName(String journalEntryName) {
+        Journal.journalEntryName = journalEntryName.concat(".txt"); // adds a text file extension so that users won't have to.
     }
 
     /**
@@ -54,7 +55,7 @@ public class Journal {
      * @return the file handler.
      */
 
-    public File getFileHandler() {
+    public static File getFileHandler() {
         return fileHandler;
     }
 
@@ -63,8 +64,8 @@ public class Journal {
      * @param fileHandler the journal entry files being set for the file handler.
      */
 
-    public void setFileHandler(File fileHandler) {
-        this.fileHandler = fileHandler;
+    public static void setFileHandler(File fileHandler) {
+        Journal.fileHandler = fileHandler;
     }
 
     /**
@@ -72,7 +73,7 @@ public class Journal {
      * @return the file reader.
      */
 
-    public FileReader getFileReader() {
+    public static FileReader getFileReader() {
         return fileReader;
     }
 
@@ -81,8 +82,8 @@ public class Journal {
      * @param fileReader the file reader being set.
      */
 
-    public void setFileReader(FileReader fileReader) {
-        this.fileReader = fileReader;
+    public static void setFileReader(FileReader fileReader) {
+        Journal.fileReader = fileReader;
     }
 
     /**
@@ -108,7 +109,7 @@ public class Journal {
      * @return the error message.
      */
 
-    public String getErrorMessage() {
+    public static String getErrorMessage() {
         return errorMessage;
     }
 
@@ -117,8 +118,8 @@ public class Journal {
      * @param errorMessage the error message being set.
      */
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public static void setErrorMessage(String errorMessage) {
+        Journal.errorMessage = errorMessage;
     }
 
     /**
@@ -126,7 +127,7 @@ public class Journal {
      * @return the text that was read from the journal entry.
      */
 
-    public String getReadJournalEntry() {
+    public static String getReadJournalEntry() {
         return readJournalEntry;
     }
 
@@ -135,8 +136,8 @@ public class Journal {
      * @param readJournalEntry the text that was read from the journal entry being set.
      */
 
-    public void setReadJournalEntry(String readJournalEntry) {
-        this.readJournalEntry += readJournalEntry;
+    public static void setReadJournalEntry(String readJournalEntry) {
+        Journal.readJournalEntry = readJournalEntry;
     }
 
     /**
@@ -176,14 +177,20 @@ public class Journal {
      * @return what was read from the journal entry.
      */
 
-    public String readJournalEntry(String name) {
+    // To-Do: fix this method.
+
+    public static String readJournalEntry(String name) {
         setJournalEntryName(name);
         try {
-            setFileHandler(new File(getJournalEntryName()));
+            setFileHandler(new File(new File(getJournalEntryName()).getAbsolutePath()));
             setFileReader(new FileReader(getFileHandler()));
-            while (getFileReader().read() != -1) {
-                // To-Do: add this functionality.
+            BufferedReader bufferedReader = new BufferedReader(getFileReader());
+            String s = "";
+            while ((s = bufferedReader.readLine()) != null) {
+                setReadJournalEntry(s); // make sure every line from the file gets read and printed out.
             }
+            getFileReader().close();
+            bufferedReader.close();
         }
         catch (Exception e) {
             setErrorMessage("Error. The journal entry could not be read.");
@@ -214,5 +221,9 @@ public class Journal {
             // To-Do: try to make sure the error message gets returned if something goes wrong.
         }
         return getListOfFiles();
+    }
+
+    public static void main(String[] args) {
+        readJournalEntry("test");
     }
 }
