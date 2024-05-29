@@ -9,7 +9,6 @@ package org.example.journal;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Journal {
 
@@ -137,7 +136,7 @@ public class Journal {
      */
 
     public static void setReadJournalEntry(String readJournalEntry) {
-        Journal.readJournalEntry = readJournalEntry;
+        Journal.readJournalEntry += readJournalEntry;
     }
 
     /**
@@ -181,16 +180,16 @@ public class Journal {
 
     public static String readJournalEntry(String name) {
         setJournalEntryName(name);
+        int s;
         try {
             setFileHandler(new File(new File(getJournalEntryName()).getAbsolutePath()));
             setFileReader(new FileReader(getFileHandler()));
-            BufferedReader bufferedReader = new BufferedReader(getFileReader());
-            String s = "";
-            while ((s = bufferedReader.readLine()) != null) {
-                setReadJournalEntry(s); // make sure every line from the file gets read and printed out.
+            BufferedReader br = new BufferedReader(getFileReader());
+            while ((s = br.read()) != -1) {
+                setReadJournalEntry(String.valueOf((char) s)); // make sure every line from the file gets read and printed out.
             }
             getFileReader().close();
-            bufferedReader.close();
+            br.close();
         }
         catch (Exception e) {
             setErrorMessage("Error. The journal entry could not be read.");
