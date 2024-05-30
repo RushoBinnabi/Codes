@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 public class CreateJournalEntry extends Application {
 
+    private Stage createJournalEntryStage;
+    private Scene createJournalEntryScene;
     private final Button createJournalEntry = new Button();
     private final Button backToMainMenu = new Button();
 
@@ -78,12 +80,29 @@ public class CreateJournalEntry extends Application {
         return createJournalEntryFilenameVBox;
     }
 
+    public Stage getCreateJournalEntryStage() {
+        return createJournalEntryStage;
+    }
+
+    public Scene getCreateJournalEntryScene() {
+        return createJournalEntryScene;
+    }
+
+    public void setCreateJournalEntryStage(Stage createJournalEntryStage) {
+        this.createJournalEntryStage = createJournalEntryStage;
+    }
+
+    public void setCreateJournalEntryScene(Scene createJournalEntryScene) {
+        this.createJournalEntryScene = createJournalEntryScene;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
+        setCreateJournalEntryStage(primaryStage);
         getCreateJournalEntryLabel().setText("Enter Text: ");
         getBackToMainMenu().setText("Back to Main Menu");
         getCreateJournalEntry().setText("Create Journal Entry");
@@ -107,9 +126,9 @@ public class CreateJournalEntry extends Application {
         getCreateJournalEntryButtonsHBox().setAlignment(Pos.CENTER);
         getCreateJournalEntryScreen().setVgap(14);
         getCreateJournalEntryScreen().setAlignment(Pos.CENTER);
-        Scene scene = new Scene(getCreateJournalEntryScreen(), 800, 500);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Journal System - Create Journal Entry");
-        primaryStage.show();
+        setCreateJournalEntryScene(new Scene(getCreateJournalEntryScreen(), 800, 500));
+        getCreateJournalEntryStage().setScene(getCreateJournalEntryScene());
+        getCreateJournalEntryStage().setTitle("Journal System - Create Journal Entry");
+        getCreateJournalEntryStage().show();
     }
 }
