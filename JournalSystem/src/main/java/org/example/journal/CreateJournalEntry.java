@@ -30,6 +30,7 @@ public class CreateJournalEntry extends Application {
     private final Label createJournalEntryFilenameLabel = new Label();
     private final HBox createJournalEntryFilenameHBox = new HBox();
     private final VBox createJournalEntryFilenameVBox = new VBox();
+    private final Journal journal = new Journal();
 
     public Button getCreateJournalEntry() {
         return createJournalEntry;
@@ -95,6 +96,10 @@ public class CreateJournalEntry extends Application {
         this.createJournalEntryScene = createJournalEntryScene;
     }
 
+    public Journal getJournal() {
+        return journal;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         setCreateJournalEntryStage(primaryStage);
@@ -121,11 +126,19 @@ public class CreateJournalEntry extends Application {
         getCreateJournalEntryButtonsHBox().setAlignment(Pos.CENTER);
         getCreateJournalEntryScreen().setVgap(14);
         getCreateJournalEntryScreen().setAlignment(Pos.CENTER);
+        getCreateJournalEntry().setOnAction(e -> createEntry());
         getBackToMainMenu().setOnAction(actionEvent -> mainMenu());
         setCreateJournalEntryScene(new Scene(getCreateJournalEntryScreen(), Journal.SCREEN_WIDTH, Journal.SCREEN_HEIGHT));
         getCreateJournalEntryStage().setScene(getCreateJournalEntryScene());
         getCreateJournalEntryStage().setTitle("Journal System - Create Journal Entry");
         getCreateJournalEntryStage().show();
+    }
+
+    private void createEntry() {
+        String contents = getCreateJournalEntryInput().getText();
+        String name = getCreateJournalEntryFilenameInput().getText();
+        String fileName = getJournal().createJournalEntry(name, contents);
+        getCreateJournalEntryFilenameLabel().setText(fileName);
     }
 
     private void mainMenu() {
