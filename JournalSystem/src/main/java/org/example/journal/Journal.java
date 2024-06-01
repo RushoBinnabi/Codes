@@ -21,6 +21,8 @@ public class Journal {
     private static String errorMessage;
     private static String readJournalEntry;
     private final ArrayList<String> listOfFiles = new ArrayList<>();
+    public static double SCREEN_WIDTH = 800.0;
+    public static double SCREEN_HEIGHT = 500.0;
 
 
     /**
