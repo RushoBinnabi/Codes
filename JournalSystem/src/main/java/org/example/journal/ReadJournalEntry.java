@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 public class ReadJournalEntry extends Application {
 
+    private Scene readJournalEntryScene;
+    private Stage readJournalEntryStage;
     private final Button backToMainMenu = new Button();
     private final GridPane readJournalEntriesScreen = new GridPane();
     private String openJournalEntriesNames;
@@ -80,12 +82,25 @@ public class ReadJournalEntry extends Application {
         return readJournalEntryConfirmation;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public Scene getReadJournalEntryScene() {
+        return readJournalEntryScene;
+    }
+
+    public Stage getReadJournalEntryStage() {
+        return readJournalEntryStage;
+    }
+
+    public void setReadJournalEntryScene(Scene readJournalEntryScene) {
+        this.readJournalEntryScene = readJournalEntryScene;
+    }
+
+    public void setReadJournalEntryStage(Stage readJournalEntryStage) {
+        this.readJournalEntryStage = readJournalEntryStage;
     }
 
     @Override
     public void start(Stage primaryStage) {
+        setReadJournalEntryStage(primaryStage);
         getReadJournalEntryButton().setText("Read Journal Entry");
         getBackToMainMenu().setText("Back to Main Menu");
         getReadJournalEntryLabel().setText("Enter Journal Entry Name:");
@@ -96,15 +111,31 @@ public class ReadJournalEntry extends Application {
         getReadJournalEntryFields().getChildren().addAll(getReadJournalEntryLabel(), getReadJournalEntryTextField());
         getReadJournalEntryFields().setSpacing(12);
         getReadJournalEntryFields().setAlignment(Pos.CENTER);
-        getReadJournalEntryVbox().getChildren().addAll(getReadJournalEntryTextArea(), getReadJournalEntryFields(), getButtonsHbox());
+        getReadJournalEntryVbox().getChildren().addAll(getReadJournalEntryTextArea(), getReadJournalEntryFields(), getButtonsHbox(), getReadJournalEntryConfirmation());
         getReadJournalEntryVbox().setSpacing(18);
         getReadJournalEntryVbox().setAlignment(Pos.CENTER);
         getReadJournalEntriesScreen().add(getReadJournalEntryVbox(), 0, 0);
+        getReadJournalEntryButton().setOnAction(e -> readEntry());
+        getBackToMainMenu().setOnAction(e -> mainMenu());
         getReadJournalEntriesScreen().setVgap(18);
         getReadJournalEntriesScreen().setAlignment(Pos.CENTER);
-        Scene scene = new Scene(getReadJournalEntriesScreen(), 800, 500);
+        Scene scene = new Scene(getReadJournalEntriesScreen(), Journal.SCREEN_WIDTH, Journal.SCREEN_HEIGHT);
         primaryStage.setTitle("Journal System - Read Journal Entry");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void readEntry() {
+        getReadJournalEntryConfirmation().setText("In development");
+    }
+
+    private void mainMenu() {
+        getReadJournalEntryStage().close();
+        JournalMainMenu journalMainMenu = new JournalMainMenu();
+        journalMainMenu.start(new Stage());
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

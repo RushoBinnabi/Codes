@@ -1,6 +1,8 @@
 package org.example.journal;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,11 +20,8 @@ public class CreateJournalEntry extends Application {
     private Scene createJournalEntryScene;
     private final Button createJournalEntry = new Button();
     private final Button backToMainMenu = new Button();
-
     private final Label createJournalEntryLabel = new Label();
-
     private final TextArea createJournalEntryInput = new TextArea();
-
     private final GridPane createJournalEntryScreen = new GridPane();
     private final HBox createJournalEntryInputHBox = new HBox();
     private final HBox createJournalEntryButtonsHBox = new HBox();
@@ -96,10 +95,6 @@ public class CreateJournalEntry extends Application {
         this.createJournalEntryScene = createJournalEntryScene;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage primaryStage) {
         setCreateJournalEntryStage(primaryStage);
@@ -111,14 +106,14 @@ public class CreateJournalEntry extends Application {
         getCreateJournalEntryInput().setMaxWidth(350);
         getCreateJournalEntryInput().setMaxHeight(200);
         getCreateJournalEntryInputHBox().getChildren().addAll(getCreateJournalEntryLabel(), getCreateJournalEntryInput());
-        getCreateJournalEntryScreen().add(getCreateJournalEntryInputHBox(), 1, 0);
+        getCreateJournalEntryScreen().add(getCreateJournalEntryInputHBox(), 1, 1);
         getCreateJournalEntryInputHBox().setSpacing(8);
         getCreateJournalEntryButtonsHBox().getChildren().addAll(getCreateJournalEntry(), getBackToMainMenu());
         getCreateJournalEntryFilenameHBox().setAlignment(Pos.CENTER);
         getCreateJournalEntryFilenameVBox().getChildren().add(getCreateJournalEntryFilenameHBox());
         getCreateJournalEntryFilenameVBox().setSpacing(8);
         getCreateJournalEntryFilenameVBox().setAlignment(Pos.CENTER);
-        getCreateJournalEntryScreen().add(getCreateJournalEntryFilenameVBox(), 1, 1);
+        getCreateJournalEntryScreen().add(getCreateJournalEntryFilenameVBox(), 1, 0);
         getCreateJournalEntryFilenameHBox().setSpacing(8);
         getCreateJournalEntryButtonsHBox().setAlignment(Pos.CENTER);
         getCreateJournalEntryScreen().add(getCreateJournalEntryButtonsHBox(), 1, 2);
@@ -126,9 +121,20 @@ public class CreateJournalEntry extends Application {
         getCreateJournalEntryButtonsHBox().setAlignment(Pos.CENTER);
         getCreateJournalEntryScreen().setVgap(14);
         getCreateJournalEntryScreen().setAlignment(Pos.CENTER);
-        setCreateJournalEntryScene(new Scene(getCreateJournalEntryScreen(), 800, 500));
+        getBackToMainMenu().setOnAction(actionEvent -> mainMenu());
+        setCreateJournalEntryScene(new Scene(getCreateJournalEntryScreen(), Journal.SCREEN_WIDTH, Journal.SCREEN_HEIGHT));
         getCreateJournalEntryStage().setScene(getCreateJournalEntryScene());
         getCreateJournalEntryStage().setTitle("Journal System - Create Journal Entry");
         getCreateJournalEntryStage().show();
+    }
+
+    private void mainMenu() {
+        getCreateJournalEntryStage().close();
+        JournalMainMenu journalMainMenu = new JournalMainMenu();
+        journalMainMenu.start(new Stage());
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

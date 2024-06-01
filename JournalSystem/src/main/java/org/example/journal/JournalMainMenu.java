@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class JournalSystem extends Application {
+public class JournalMainMenu extends Application {
 
     // this JournalSystem class creates a GUI using the JavaFX library
     // for displaying the main menu for the journaling system.
@@ -58,69 +58,158 @@ public class JournalSystem extends Application {
         return createJournalEntryButton;
     }
 
+    /**
+     * this getDeleteJournalEntriesButton() method gets the button that will
+     * redirect the screen to the manu for deleting journal entries.
+     * @return the button for deleting journal entries.
+     */
+
     public Button getDeleteJournalEntriesButton() {
         return deleteJournalEntriesButton;
     }
+
+    /**
+     * this getViewJournalEntriesButton() method gets the button that will
+     * redirect the screen to the menu for deleting journal entries.
+     * @return the button for viewing journal entries.
+     */
 
     public Button getViewJournalEntriesButton() {
         return viewJournalEntriesButton;
     }
 
+    /**
+     * this getButton() method gets the hbox that has the buttons' layout.
+     * @return the hbox that has the buttons' layout.
+     */
+
     public HBox getButtons() {
         return buttons;
     }
+
+    /**
+     * this getReadJournalEntryButton() method gets the button that will
+     * redirect the screen to the menu for reading journal entries.
+     * @return the button for reading journal entries.
+     */
 
     public Button getReadJournalEntryButton() {
         return readJournalEntryButton;
     }
 
+    /**
+     * this getOpenJournalEntryButton() method gets the button that will
+     * redirect the screen to the menu for opening journal entries.
+     * @return the button for opening journal entries.
+     */
+
     public Button getOpenJournalEntryButton() {
         return openJournalEntryButton;
     }
+
+    /**
+     * this getJournalSystemScene() method gets the scene for the main menu of the journaling system.
+     * @return the main menu for the journaling system.
+     */
 
     public Scene getJournalSystemScene() {
         return journalSystemScene;
     }
 
+    /**
+     * this getJournalSystemStage() method gets the stage for the main menu of the journaling system.
+     * @return the main menu of the journaling system.
+     */
+
     public Stage getJournalSystemStage() {
         return journalSystemStage;
     }
+
+    /**
+     * this setJournalSystemScene() method sets the scene for the main menu of the journaling system.
+     * @param journalSystemScene the scene for the main menu of the journaling system being set.
+     */
 
     public void setJournalSystemScene(Scene journalSystemScene) {
         this.journalSystemScene = journalSystemScene;
     }
 
+    /**
+     * this setJournalSystemStage() method sets the stage for the main menu of the journaling system.
+     * @param journalSystemStage the stage for the main menu of the journaling system being set.
+     */
+
     public void setJournalSystemStage(Stage journalSystemStage) {
         this.journalSystemStage = journalSystemStage;
     }
+
+    /**
+     * this getCreateJournalEntry() method gets the CreateJournalEntry object.
+     * @return the CreateJournalEntry object.
+     */
 
     public CreateJournalEntry getCreateJournalEntry() {
         return createJournalEntry;
     }
 
+    /**
+     * this getViewJournalEntries() method gets the ViewJournalEntries object.
+     * @return the ViewJournalEntries object.
+     */
+
     public ViewJournalEntries getViewJournalEntries() {
         return viewJournalEntries;
     }
+
+    /**
+     * this getReadJournalEntry() method gets the ReadJournalEntry object.
+     * @return the ReadJournalEntry object.
+     */
 
     public ReadJournalEntry getReadJournalEntry() {
         return readJournalEntry;
     }
 
+    /**
+     * this getOpenJournalEntry() method gets the OpenJournalEntry object.
+     * @return the OpenJournalEntry object.
+     */
+
     public OpenJournalEntry getOpenJournalEntry() {
         return openJournalEntry;
     }
+
+    /**
+     * this getDeleteJournalEntry() method gets the DeleteJournalEntry object.
+     * @return the DeleteJournalEntry object.
+     */
 
     public DeleteJournalEntry getDeleteJournalEntry() {
         return deleteJournalEntry;
     }
 
+    /**
+     * this getMainMenuPlacement() method gets the vbox that has the layout for the label and buttons.
+     * @return the vbox that has the layout for the label and buttons.
+     */
+
     public VBox getMainMenuPlacement() {
         return mainMenuPlacement;
     }
 
+    /**
+     * this getMainMenuTitle() method gets the label for the main menu.
+     * @return the label for the main menu.
+     */
+
     public Label getMainMenuTitle() {
         return mainMenuTitle;
     }
+
+    /**
+     * this start() method contains everything for the main menu of the journaling system to function.
+     * @param stage the stage that has everything for the main menu of the journaling system.
+     */
 
     @Override
     public void start(Stage stage) {
@@ -150,30 +239,65 @@ public class JournalSystem extends Application {
         getJournalSystemStage().show();
     }
 
+    /**
+     * this switchToCreateJournalEntryScreen() method switches the screen
+     * to the menu for creating journal entries when the appropriate button
+     * is clicked. it also closes the main menu.
+     */
+
     private void switchToCreateJournalEntryScreen() {
         getJournalSystemStage().close();
         getCreateJournalEntry().start(new Stage());
     }
+
+    /**
+     * this switchToReadJournalEntryScreen() method switches the screen
+     * to the menu for reading journal entries when the appropriate button
+     * is clicked. it also closes the main menu.
+     */
 
     private void switchToReadJournalEntryScreen() {
         getJournalSystemStage().close();
         getReadJournalEntry().start(new Stage());
     }
 
+    /**
+     * this switchToViewJournalEntriesScreen() method switches the screen
+     * to the manu for viewing journal entries when the appropriate button
+     * is clicked. it also closes the main menu.
+     */
+
     private void switchToViewJournalEntriesScreen() {
         getJournalSystemStage().close();
         getViewJournalEntries().start(new Stage());
     }
+
+    /**
+     * this switchToOpenJournalEntryScreen() method switches the screen
+     * to the menu for opening journal entries when the appropriate button
+     * is clicked. it also closes the main menu.
+     */
 
     private void switchToOpenJournalEntryScreen() {
         getJournalSystemStage().close();
         getOpenJournalEntry().start(new Stage());
     }
 
+    /**
+     * this switchToDeleteJournalEntryScreen() method switches the screen
+     * to the menu for deleting journal entries when the appropriate button
+     * is clicked. it also closes the main menu.
+     */
+
     private void switchToDeleteJournalEntryScreen() {
         getJournalSystemStage().close();
         getDeleteJournalEntry().start(new Stage());
     }
+
+    /**
+     * this main() method runs the program.
+     * @param args the program being run.
+     */
 
     public static void main(String[] args) {
         launch();

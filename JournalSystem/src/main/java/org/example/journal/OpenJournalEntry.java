@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 public class OpenJournalEntry extends Application {
 
+    private Scene openJournalEntryScene;
+    private Stage openJournalEntryStage;
     private final Button backToMainMenu = new Button();
     private final GridPane openJournalEntriesScreen = new GridPane();
     private String openJournalEntriesNames;
@@ -80,12 +82,25 @@ public class OpenJournalEntry extends Application {
         return openJournalEntryConfirmation;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public Scene getOpenJournalEntryScene() {
+        return openJournalEntryScene;
+    }
+
+    public Stage getOpenJournalEntryStage() {
+        return openJournalEntryStage;
+    }
+
+    public void setOpenJournalEntryScene(Scene openJournalEntryScene) {
+        this.openJournalEntryScene = openJournalEntryScene;
+    }
+
+    public void setOpenJournalEntryStage(Stage openJournalEntryStage) {
+        this.openJournalEntryStage = openJournalEntryStage;
     }
 
     @Override
     public void start(Stage primaryStage) {
+        setOpenJournalEntryStage(primaryStage);
         getOpenJournalEntryButton().setText("Open Journal Entry");
         getBackToMainMenu().setText("Back to Main Menu");
         getOpenJournalEntryLabel().setText("Enter Journal Entry Name:");
@@ -96,15 +111,31 @@ public class OpenJournalEntry extends Application {
         getOpenJournalEntryFields().getChildren().addAll(getOpenJournalEntryLabel(), getOpenJournalEntryTextField());
         getOpenJournalEntryFields().setSpacing(12);
         getOpenJournalEntryFields().setAlignment(Pos.CENTER);
-        getOpenJournalEntryVbox().getChildren().addAll(getOpenJournalEntryTextArea(), getOpenJournalEntryFields(), getButtonsHbox());
+        getOpenJournalEntryVbox().getChildren().addAll(getOpenJournalEntryTextArea(), getOpenJournalEntryFields(), getButtonsHbox(), getOpenJournalEntryConfirmation());
         getOpenJournalEntryVbox().setSpacing(18);
         getOpenJournalEntryVbox().setAlignment(Pos.CENTER);
         getOpenJournalEntriesScreen().add(getOpenJournalEntryVbox(), 0, 0);
+        getOpenJournalEntryButton().setOnAction(e -> openEntry());
+        getBackToMainMenu().setOnAction(e -> mainMenu());
         getOpenJournalEntriesScreen().setVgap(18);
         getOpenJournalEntriesScreen().setAlignment(Pos.CENTER);
-        Scene scene = new Scene(getOpenJournalEntriesScreen(), 800, 500);
+        setOpenJournalEntryScene(new Scene(getOpenJournalEntriesScreen(), Journal.SCREEN_WIDTH, Journal.SCREEN_HEIGHT));
         primaryStage.setTitle("Journal System - Open Journal Entry");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        getOpenJournalEntryStage().setScene(getOpenJournalEntryScene());
+        getOpenJournalEntryStage().show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    private void openEntry() {
+        getOpenJournalEntryConfirmation().setText("In development");
+    }
+
+    private void mainMenu() {
+        getOpenJournalEntryStage().close();
+        JournalMainMenu journalMainMenu = new JournalMainMenu();
+        journalMainMenu.start(new Stage());
     }
 }

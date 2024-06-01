@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 public class DeleteJournalEntry extends Application {
 
+    private Scene deleteJournalEntryScene;
+    private Stage deleteJournalEntryStage;
     private final Button backToMainMenu = new Button();
     private final GridPane deleteJournalEntriesScreen = new GridPane();
     private String viewJournalEntriesNames;
@@ -80,12 +82,25 @@ public class DeleteJournalEntry extends Application {
         return deleteJournalEntryConfirmation;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public Scene getDeleteJournalEntryScene() {
+        return deleteJournalEntryScene;
+    }
+
+    public void setDeleteJournalEntryScene(Scene deleteJournalEntryScene) {
+        this.deleteJournalEntryScene = deleteJournalEntryScene;
+    }
+
+    public Stage getDeleteJournalEntryStage() {
+        return deleteJournalEntryStage;
+    }
+
+    public void setDeleteJournalEntryStage(Stage deleteJournalEntryStage) {
+        this.deleteJournalEntryStage = deleteJournalEntryStage;
     }
 
     @Override
     public void start(Stage primaryStage) {
+        setDeleteJournalEntryStage(primaryStage);
         getDeleteJournalEntryButton().setText("Delete Journal Entry");
         getBackToMainMenu().setText("Back to Main Menu");
         getDeleteJournalEntryLabel().setText("Enter Journal Entry Name:");
@@ -96,15 +111,31 @@ public class DeleteJournalEntry extends Application {
         getDeleteJournalEntryFields().getChildren().addAll(getDeleteJournalEntryLabel(), getDeleteJournalEntryTextField());
         getDeleteJournalEntryFields().setSpacing(12);
         getDeleteJournalEntryFields().setAlignment(Pos.CENTER);
-        getDeleteJournalEntryVbox().getChildren().addAll(getDeleteJournalEntryTextArea(), getDeleteJournalEntryFields(), getButtonsHbox());
+        getDeleteJournalEntryVbox().getChildren().addAll(getDeleteJournalEntryTextArea(), getDeleteJournalEntryFields(), getButtonsHbox(), getDeleteJournalEntryConfirmation());
         getDeleteJournalEntryVbox().setSpacing(18);
         getDeleteJournalEntryVbox().setAlignment(Pos.CENTER);
+        getDeleteJournalEntryButton().setOnAction(e -> deleteEntry());
+        getBackToMainMenu().setOnAction(e -> mainMenu());
         getDeleteJournalEntriesScreen().add(getDeleteJournalEntryVbox(), 0, 0);
         getDeleteJournalEntriesScreen().setVgap(18);
         getDeleteJournalEntriesScreen().setAlignment(Pos.CENTER);
-        Scene scene = new Scene(getDeleteJournalEntriesScreen(), 800, 500);
+        setDeleteJournalEntryScene(new Scene(getDeleteJournalEntriesScreen(), Journal.SCREEN_WIDTH, Journal.SCREEN_HEIGHT));
         primaryStage.setTitle("Journal System - Delete Journal Entry");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        getDeleteJournalEntryStage().setScene(getDeleteJournalEntryScene());
+        getDeleteJournalEntryStage().show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    private void mainMenu() {
+        getDeleteJournalEntryStage().close();
+        JournalMainMenu journalMainMenu = new JournalMainMenu();
+        journalMainMenu.start(new Stage());
+    }
+
+    private void deleteEntry() {
+        getDeleteJournalEntryConfirmation().setText("In development"); // remove this with actual button functionality.
     }
 }
