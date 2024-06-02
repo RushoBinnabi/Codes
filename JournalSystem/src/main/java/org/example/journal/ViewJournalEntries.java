@@ -20,6 +20,7 @@ public class ViewJournalEntries extends Application {
     private final TextArea viewJournalEntries = new TextArea();
     private final Journal journal = new Journal();
     private final VBox vbox = new VBox();
+    private ArrayList<String> files;
 
     public Button getBackToMainMenu() {
         return backToMainMenu;
@@ -57,6 +58,14 @@ public class ViewJournalEntries extends Application {
         this.viewJournalEntriesStage = viewJournalEntriesStage;
     }
 
+    public ArrayList<String> getFiles() {
+        return files;
+    }
+
+    public void setFiles(ArrayList<String> files) {
+        this.files = new ArrayList<>(files);
+    }
+
     @Override
     public void start(Stage primaryStage) {
         setViewJournalEntriesStage(primaryStage);
@@ -70,14 +79,21 @@ public class ViewJournalEntries extends Application {
         getViewJournalEntriesScreen().setAlignment(Pos.CENTER);
         getViewJournalEntries().setScaleX(1.3);
         getViewJournalEntries().setScaleY(1.3);
-        ArrayList<String> files = getJournal().viewJournalEntries();
-        if (files != null) {
-            getViewJournalEntries().setText(String.valueOf(files).replaceAll(",", "").replace('[', ' ').replaceAll("]", ""));
-        }
+        getEntries();
         setViewJournalEntriesScene(new Scene(getViewJournalEntriesScreen(), Journal.SCREEN_WIDTH,  Journal.SCREEN_HEIGHT));
         getViewJournalEntriesStage().setScene(getViewJournalEntriesScene());
         getViewJournalEntriesStage().setTitle("Journal System - View Journal Entries");
         getViewJournalEntriesStage().show();
+    }
+
+    private void getEntries() {
+        setFiles(getJournal().viewJournalEntries());
+        if (getFiles().isEmpty()) {
+            getViewJournalEntries().setText("No journal entries available");
+        }
+        else {
+            getViewJournalEntries().setText(String.valueOf(getFiles()).replaceAll(",", "").replace('[', ' ').replaceAll("]", ""));
+        }
     }
 
     private void mainMenu() {

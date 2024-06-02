@@ -1,3 +1,10 @@
+/**
+ * Name: Rusho Binnabi
+ * Date: 6/2/2024
+ * Project: Journal System - CreateJournalEntry
+ * Contact Information: RushoBinnabi123@yahoo.com
+ */
+
 package org.example.journal;
 
 import javafx.application.Application;
@@ -13,6 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CreateJournalEntry extends Application {
+
+    // this CreateJournalEntry file has the menu for creating journal entries.
 
     private Stage createJournalEntryStage;
     private Scene createJournalEntryScene;
@@ -30,78 +39,243 @@ public class CreateJournalEntry extends Application {
     private final VBox createJournalEntryFilenameVBox = new VBox();
     private final Journal journal = new Journal();
     private final VBox createJournalEntryConfirmationVBox = new VBox();
+    private String name;
+    private String contents;
+    private String fileName;
+
+    /**
+     * this getCreateJournalEntry() method gets the Button object that will create the journal entry when pressed.
+     * @return the button that will create the journal entry when pressed.
+     */
 
     public Button getCreateJournalEntry() {
         return createJournalEntry;
     }
 
+    /**
+     * this getBackToMainMenu() method gets the Button object that will redirect the screen to the main menu when pressed.
+     * @return the button object that will redirect the screen to the main menu when pressed.
+     */
+
     public Button getBackToMainMenu() {
         return backToMainMenu;
     }
+
+    /**
+     * this getCreateJournalEntryLabel() gets the Label object that has the text
+     * for prompting the user to enter the contents for the journal entry.
+     * @return the Label object that has the text for prompting the user to enter the contents for the journal entry.
+     */
 
     public Label getCreateJournalEntryLabel() {
         return createJournalEntryLabel;
     }
 
+    /**
+     * this getCreateJournalEntryInput() method gets the TextArea object
+     * that has the contents that the user entered for the journal entry.
+     * @return the TextArea object that has the contents that the user entered for the journal entry.
+     */
+
     public TextArea getCreateJournalEntryInput() {
         return createJournalEntryInput;
     }
+
+    /**
+     * this getCreateJournalEntryScreen() method gets the GridPane object that has everything arranged for the menu.
+     * @return the GridPane object that has everything arranged for the menu.
+     */
 
     public GridPane getCreateJournalEntryScreen() {
         return createJournalEntryScreen;
     }
 
+    /**
+     * this getCreateJournalEntryInputHBox() method gets the HBox object that has everything
+     * arranged for the input for creating journal entries of the menu.
+     * @return the HBox object that has everything arranged for the input for creating journal entries of the menu.
+     */
+
     public HBox getCreateJournalEntryInputHBox() {
         return createJournalEntryInputHBox;
     }
+
+    /**
+     * this getCreateJournalEntryButtonsHBox() method gets the HBox object that has everything
+     * arranged for the buttons for creating journal entries of the menu.
+     * @return the HBox object that has everything arranged for the buttons for creating journal
+     * entries of the menu.
+     */
 
     public HBox getCreateJournalEntryButtonsHBox() {
         return createJournalEntryButtonsHBox;
     }
 
+    /**
+     * this getCreateJournalEntryConfirmation() method gets the Label object
+     * that has the Label that tells the user if the journal entry was created or not.
+     * @return the Label object that tells the user if the journal entry was created or not.
+     */
+
     public Label getCreateJournalEntryConfirmation() {
         return createJournalEntryConfirmation;
     }
+
+    /**
+     * this getCreateJournalEntryFilenameInput() method gets the TextField object
+     * that has the input for the filename for the journal entry.
+     * @return the TextField object that has the input for the filename of the journal entry.
+     */
 
     public TextField getCreateJournalEntryFilenameInput() {
         return createJournalEntryFilenameInput;
     }
 
+    /**
+     * this getCreateJournalEntryFilenameLabel gets the Label object that has the Label
+     * that tells the user to enter the filename for the journal entry.
+     * @return the Label that tells the user to enter the filename for the journal entry.
+     */
+
     public Label getCreateJournalEntryFilenameLabel() {
         return createJournalEntryFilenameLabel;
     }
+
+    /**
+     * this getCreateJournalEntryFilenameHBox() method gets the HBox object
+     * that has the filename for the journal entry.
+     * @return the HBox object that has the filename for the journal entry.
+     */
 
     public HBox getCreateJournalEntryFilenameHBox() {
         return createJournalEntryFilenameHBox;
     }
 
+    /**
+     * this getCreateJournalEntryFilenameVBox() method gets the VBox object
+     * that has the filename for the journal entry.
+     * @return the VBox object that has the filename for the journal entry.
+     */
+
     public VBox getCreateJournalEntryFilenameVBox() {
         return createJournalEntryFilenameVBox;
     }
+
+    /**
+     * this getCreateJournalEntryStage() method gets the Stage object that
+     * has the stage for the menu for creating journal entries.
+     * @return the stage for the menu for creating journal entries.
+     */
 
     public Stage getCreateJournalEntryStage() {
         return createJournalEntryStage;
     }
 
+    /**
+     * this getCreateJournalEntryScene() method gets the Scene object that
+     * has the scene for the menu for creating journal entries.
+     * @return the scene for the menu for creating journal entries.
+     */
+
     public Scene getCreateJournalEntryScene() {
         return createJournalEntryScene;
     }
+
+    /**
+     * this setCreateJournalEntryStage() method sets the stage for the menu for creating journal entries.
+     * @param createJournalEntryStage the stage for the menu for creating journal entries being set.
+     */
 
     public void setCreateJournalEntryStage(Stage createJournalEntryStage) {
         this.createJournalEntryStage = createJournalEntryStage;
     }
 
+    /**
+     * this setCreateJournalEntryScene() method sets the scene for the menu for creating journal entries.
+     * @param createJournalEntryScene the scene for the menu for creating journal entries.
+     */
+
     public void setCreateJournalEntryScene(Scene createJournalEntryScene) {
         this.createJournalEntryScene = createJournalEntryScene;
     }
+
+    /**
+     * this getJournal() method gets the Journal object that has the functionality for the journaling system.
+     * @return the Journal object that has the functionality for the journaling system.
+     */
 
     public Journal getJournal() {
         return journal;
     }
 
+    /**
+     * this getCreateJournalEntryConfirmationLabelVBox() method gets the VBox object
+     * that has the confirmation label after creating the journal entries.
+     * @return the VBox object that has the confirmation label after creating the journal entries.
+     */
+
     public VBox getCreateJournalEntryConfirmationLabelVBox() {
         return createJournalEntryConfirmationVBox;
     }
+
+    /**
+     * this getContents() method gets the contents of the journal entry.
+     * @return the contents of the journal entry.
+     */
+
+    public String getContents() {
+        return contents;
+    }
+
+    /**
+     * this getName() method gets the name of the journal entry.
+     * @return the name of the journal entry.
+     */
+
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * this setContents() method sets the contents of the journal entry.
+     * @param contents the contents of the journal entry being set.
+     */
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
+    /**
+     * this setName() method sets the name of the journal entry.
+     * @param name the name of the journal entry being set.
+     */
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * this getFileName() method gets the filename of the journal entry after it gets created.
+     * @return the filename of the journal entry after it gets created.
+     */
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
+     * this setFileName() method sets the filename of the journal entry after it gets created.
+     * @param fileName the filename of the journal entry after it gets created.
+     */
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    /**
+     * this start() method contains everything for the menu for creating journal entries of the journaling system to function.
+     * @param primaryStage the stage that has everything for the menu for creating journal entries of the journaling system.
+     */
 
     @Override
     public void start(Stage primaryStage) {
@@ -141,28 +315,42 @@ public class CreateJournalEntry extends Application {
         getCreateJournalEntryStage().show();
     }
 
+    /**
+     * this createEntry() method creates the journal entries when the appropriate button is clicked.
+     */
+
     private void createEntry() {
-        String contents = getCreateJournalEntryInput().getText();
-        String name = getCreateJournalEntryFilenameInput().getText();
-        if (contents.isEmpty() || name.isEmpty()) {
+        setContents(getCreateJournalEntryInput().getText());
+        setName(getCreateJournalEntryFilenameInput().getText());
+        if (getContents().isEmpty() || getName().isEmpty()) {
             getCreateJournalEntryConfirmation().setScaleX(1.3);
             getCreateJournalEntryConfirmation().setScaleY(1.3);
             getCreateJournalEntryConfirmation().setText("Journal Entry Or Journal Entry Name Is Empty");
         }
         else {
-            String fileName = getJournal().createJournalEntry(name, contents);
-            getCreateJournalEntryFilenameLabel().setText(fileName);
+            setFileName(getJournal().createJournalEntry(getName(), getContents()));
+            getCreateJournalEntryFilenameLabel().setText(getFileName());
             getCreateJournalEntryConfirmation().setScaleX(1.3);
             getCreateJournalEntryConfirmation().setScaleY(1.3);
             getCreateJournalEntryConfirmation().setText("Journal Entry Created");
         }
     }
 
+    /**
+     * this mainMenu() method redirects the screen back to the main menu when the appropriate button
+     * is clicked. it also closes the current screen for creating journal entries.
+     */
+
     private void mainMenu() {
         getCreateJournalEntryStage().close();
         JournalMainMenu journalMainMenu = new JournalMainMenu();
         journalMainMenu.start(new Stage());
     }
+
+    /**
+     * this main() method runs the program.
+     * @param args the program being run.
+     */
 
     public static void main(String[] args) {
         launch(args);
