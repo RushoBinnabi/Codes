@@ -22,8 +22,6 @@ public class ViewJournalEntries extends Application {
     private final TextArea viewJournalEntries = new TextArea();
     private final Journal journal = new Journal();
     private final VBox vbox = new VBox();
-    private final Button viewJournalEntriesButton = new Button();
-    private final HBox buttons = new HBox();
 
     public Button getBackToMainMenu() {
         return backToMainMenu;
@@ -69,38 +67,29 @@ public class ViewJournalEntries extends Application {
         this.viewJournalEntriesStage = viewJournalEntriesStage;
     }
 
-    public Button getViewJournalEntriesButton() {
-        return viewJournalEntriesButton;
-    }
-
-    public HBox getButtons() {
-        return buttons;
-    }
-
     @Override
     public void start(Stage primaryStage) {
         setViewJournalEntriesStage(primaryStage);
         getViewJournalEntries().setEditable(false);
-        getViewJournalEntriesButton().setText("View Journal Entries");
         getBackToMainMenu().setText("Back to Main Menu");
-        getButtons().getChildren().addAll(getViewJournalEntriesButton(), getBackToMainMenu());
-        getButtons().setAlignment(Pos.CENTER);
-        getButtons().setSpacing(8);
-        getVbox().getChildren().addAll(getViewJournalEntries(), getButtons());
+        getVbox().getChildren().addAll(getViewJournalEntries(), getBackToMainMenu());
         getVbox().setAlignment(Pos.CENTER);
         getVbox().setSpacing(18);
-        getViewJournalEntriesButton().setOnAction(e -> viewEntries());
         getBackToMainMenu().setOnAction(e -> mainMenu());
         getViewJournalEntriesScreen().add(getVbox(), 0, 0);
         getViewJournalEntriesScreen().setAlignment(Pos.CENTER);
+        ArrayList<String> files = getJournal().viewJournalEntries();
+        for (int i = 0; i < files.size(); i++) {
+            if (files.get(i).endsWith(".txt")) {
+                setViewJournalEntriesNames(files.get(i));
+                getViewJournalEntries().setText(getViewJournalEntriesNames());
+            }
+        }
+        getViewJournalEntries().setText(files.toString().concat("\n"));
         setViewJournalEntriesScene(new Scene(getViewJournalEntriesScreen(), Journal.SCREEN_WIDTH,  Journal.SCREEN_HEIGHT));
         primaryStage.setScene(getViewJournalEntriesScene());
         getViewJournalEntriesStage().setTitle("Journal System - View Journal Entries");
         getViewJournalEntriesStage().show();
-    }
-
-    private void viewEntries() {
-        // continue here.
     }
 
     private void mainMenu() {
