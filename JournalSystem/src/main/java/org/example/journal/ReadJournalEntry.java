@@ -126,6 +126,8 @@ public class ReadJournalEntry extends Application {
     }
 
     private void readEntry() {
+        getReadJournalEntryConfirmation().setScaleX(1.3);
+        getReadJournalEntryConfirmation().setScaleY(1.3);
         getReadJournalEntryConfirmation().setText("In development");
     }
 

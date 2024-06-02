@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -18,7 +17,6 @@ public class ViewJournalEntries extends Application {
     private Stage viewJournalEntriesStage;
     private final Button backToMainMenu = new Button();
     private final GridPane viewJournalEntriesScreen = new GridPane();
-    private String viewJournalEntriesNames;
     private final TextArea viewJournalEntries = new TextArea();
     private final Journal journal = new Journal();
     private final VBox vbox = new VBox();
@@ -31,16 +29,8 @@ public class ViewJournalEntries extends Application {
         return viewJournalEntriesScreen;
     }
 
-    public String getViewJournalEntriesNames() {
-        return viewJournalEntriesNames;
-    }
-
     public TextArea getViewJournalEntries() {
         return viewJournalEntries;
-    }
-
-    public void setViewJournalEntriesNames(String string) {
-        viewJournalEntriesNames = string;
     }
 
     public Journal getJournal() {
@@ -74,20 +64,18 @@ public class ViewJournalEntries extends Application {
         getBackToMainMenu().setText("Back to Main Menu");
         getVbox().getChildren().addAll(getViewJournalEntries(), getBackToMainMenu());
         getVbox().setAlignment(Pos.CENTER);
-        getVbox().setSpacing(18);
+        getVbox().setSpacing(50);
         getBackToMainMenu().setOnAction(e -> mainMenu());
         getViewJournalEntriesScreen().add(getVbox(), 0, 0);
         getViewJournalEntriesScreen().setAlignment(Pos.CENTER);
+        getViewJournalEntries().setScaleX(1.3);
+        getViewJournalEntries().setScaleY(1.3);
         ArrayList<String> files = getJournal().viewJournalEntries();
-        for (int i = 0; i < files.size(); i++) {
-            if (files.get(i).endsWith(".txt")) {
-                setViewJournalEntriesNames(files.get(i));
-                getViewJournalEntries().setText(getViewJournalEntriesNames());
-            }
+        if (files != null) {
+            getViewJournalEntries().setText(String.valueOf(files).replaceAll(",", "").replace('[', ' ').replaceAll("]", ""));
         }
-        getViewJournalEntries().setText(files.toString().concat("\n"));
         setViewJournalEntriesScene(new Scene(getViewJournalEntriesScreen(), Journal.SCREEN_WIDTH,  Journal.SCREEN_HEIGHT));
-        primaryStage.setScene(getViewJournalEntriesScene());
+        getViewJournalEntriesStage().setScene(getViewJournalEntriesScene());
         getViewJournalEntriesStage().setTitle("Journal System - View Journal Entries");
         getViewJournalEntriesStage().show();
     }

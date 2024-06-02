@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class OpenJournalEntry extends Application {
 
     private Scene openJournalEntryScene;
@@ -109,12 +111,18 @@ public class OpenJournalEntry extends Application {
         getButtonsHbox().setSpacing(12);
         getButtonsHbox().setAlignment(Pos.CENTER);
         getOpenJournalEntryFields().getChildren().addAll(getOpenJournalEntryLabel(), getOpenJournalEntryTextField());
-        getOpenJournalEntryFields().setSpacing(12);
+        getOpenJournalEntryFields().setSpacing(18);
         getOpenJournalEntryFields().setAlignment(Pos.CENTER);
+        getOpenJournalEntryTextArea().setScaleX(1.3);
+        getOpenJournalEntryTextArea().setScaleY(1.3);
         getOpenJournalEntryVbox().getChildren().addAll(getOpenJournalEntryTextArea(), getOpenJournalEntryFields(), getButtonsHbox(), getOpenJournalEntryConfirmation());
-        getOpenJournalEntryVbox().setSpacing(18);
+        getOpenJournalEntryVbox().setSpacing(45);
         getOpenJournalEntryVbox().setAlignment(Pos.CENTER);
         getOpenJournalEntriesScreen().add(getOpenJournalEntryVbox(), 0, 0);
+        ArrayList<String> files = getJournal().viewJournalEntries();
+        if (files != null) {
+            getOpenJournalEntryTextArea().setText(String.valueOf(files).replaceAll(",", "").replace('[', ' ').replaceAll("]", ""));
+        }
         getOpenJournalEntryButton().setOnAction(e -> openEntry());
         getBackToMainMenu().setOnAction(e -> mainMenu());
         getOpenJournalEntriesScreen().setVgap(18);
@@ -129,7 +137,10 @@ public class OpenJournalEntry extends Application {
         launch(args);
     }
 
+
     private void openEntry() {
+        getOpenJournalEntryConfirmation().setScaleX(1.3);
+        getOpenJournalEntryConfirmation().setScaleY(1.3);
         getOpenJournalEntryConfirmation().setText("In development");
     }
 

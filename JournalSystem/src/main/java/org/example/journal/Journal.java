@@ -212,7 +212,7 @@ public class Journal {
             if (files != null) {
                 for (File file : files) {
                     if (file.getName().endsWith(".txt")) {
-                        getListOfFiles().add(file.getName());
+                        getListOfFiles().add(file.getName() + "\n");
                     }
                 }
             }

@@ -1,8 +1,6 @@
 package org.example.journal;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,6 +29,7 @@ public class CreateJournalEntry extends Application {
     private final HBox createJournalEntryFilenameHBox = new HBox();
     private final VBox createJournalEntryFilenameVBox = new VBox();
     private final Journal journal = new Journal();
+    private final VBox createJournalEntryConfirmationVBox = new VBox();
 
     public Button getCreateJournalEntry() {
         return createJournalEntry;
@@ -100,6 +99,10 @@ public class CreateJournalEntry extends Application {
         return journal;
     }
 
+    public VBox getCreateJournalEntryConfirmationLabelVBox() {
+        return createJournalEntryConfirmationVBox;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         setCreateJournalEntryStage(primaryStage);
@@ -107,6 +110,9 @@ public class CreateJournalEntry extends Application {
         getBackToMainMenu().setText("Back to Main Menu");
         getCreateJournalEntry().setText("Create Journal Entry");
         getCreateJournalEntryFilenameLabel().setText("Enter filename:");
+        getCreateJournalEntryConfirmationLabelVBox().getChildren().add(getCreateJournalEntryConfirmation());
+        getCreateJournalEntryConfirmationLabelVBox().setSpacing(8);
+        getCreateJournalEntryConfirmationLabelVBox().setAlignment(Pos.CENTER);
         getCreateJournalEntryFilenameHBox().getChildren().addAll(getCreateJournalEntryFilenameLabel(), getCreateJournalEntryFilenameInput());
         getCreateJournalEntryInput().setMaxWidth(350);
         getCreateJournalEntryInput().setMaxHeight(200);
@@ -122,9 +128,10 @@ public class CreateJournalEntry extends Application {
         getCreateJournalEntryFilenameHBox().setSpacing(8);
         getCreateJournalEntryButtonsHBox().setAlignment(Pos.CENTER);
         getCreateJournalEntryScreen().add(getCreateJournalEntryButtonsHBox(), 1, 2);
+        getCreateJournalEntryScreen().add(getCreateJournalEntryConfirmationLabelVBox(), 1, 3);
         getCreateJournalEntryButtonsHBox().setSpacing(8);
         getCreateJournalEntryButtonsHBox().setAlignment(Pos.CENTER);
-        getCreateJournalEntryScreen().setVgap(14);
+        getCreateJournalEntryScreen().setVgap(20);
         getCreateJournalEntryScreen().setAlignment(Pos.CENTER);
         getCreateJournalEntry().setOnAction(e -> createEntry());
         getBackToMainMenu().setOnAction(actionEvent -> mainMenu());
@@ -137,8 +144,18 @@ public class CreateJournalEntry extends Application {
     private void createEntry() {
         String contents = getCreateJournalEntryInput().getText();
         String name = getCreateJournalEntryFilenameInput().getText();
-        String fileName = getJournal().createJournalEntry(name, contents);
-        getCreateJournalEntryFilenameLabel().setText(fileName);
+        if (contents.isEmpty() || name.isEmpty()) {
+            getCreateJournalEntryConfirmation().setScaleX(1.3);
+            getCreateJournalEntryConfirmation().setScaleY(1.3);
+            getCreateJournalEntryConfirmation().setText("Journal Entry Or Journal Entry Name Is Empty");
+        }
+        else {
+            String fileName = getJournal().createJournalEntry(name, contents);
+            getCreateJournalEntryFilenameLabel().setText(fileName);
+            getCreateJournalEntryConfirmation().setScaleX(1.3);
+            getCreateJournalEntryConfirmation().setScaleY(1.3);
+            getCreateJournalEntryConfirmation().setText("Journal Entry Created");
+        }
     }
 
     private void mainMenu() {
