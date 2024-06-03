@@ -8,18 +8,18 @@
 package org.example.journal;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Journal {
 
     // this Journal file has the name and the functionality of the journal files that will be used for the journal entries.
 
-    private static String journalEntryName;
-    private static File fileHandler;
-    private static FileReader fileReader;
+    private String journalEntryName;
+    private File fileHandler;
     private FileWriter fileWriter;
-    private static String errorMessage;
-    private static String readJournalEntry;
+    private String errorMessage;
     private final ArrayList<String> listOfFiles = new ArrayList<>();
     public static double SCREEN_WIDTH = 800.0;
     public static double SCREEN_HEIGHT = 500.0;
@@ -38,7 +38,7 @@ public class Journal {
      * @return the name of the journal entry.
      */
 
-    public static String getJournalEntryName() {
+    public String getJournalEntryName() {
         return journalEntryName;
     }
 
@@ -47,8 +47,8 @@ public class Journal {
      * @param journalEntryName the name of the journal entry being set.
      */
 
-    public static void setJournalEntryName(String journalEntryName) {
-        Journal.journalEntryName = journalEntryName.concat(".txt"); // adds a text file extension so that users won't have to.
+    public void setJournalEntryName(String journalEntryName) {
+        this.journalEntryName = journalEntryName.concat(".txt"); // adds a text file extension so that users won't have to.
     }
 
     /**
@@ -56,7 +56,7 @@ public class Journal {
      * @return the file handler.
      */
 
-    public static File getFileHandler() {
+    public File getFileHandler() {
         return fileHandler;
     }
 
@@ -65,26 +65,8 @@ public class Journal {
      * @param fileHandler the journal entry files being set for the file handler.
      */
 
-    public static void setFileHandler(File fileHandler) {
-        Journal.fileHandler = fileHandler;
-    }
-
-    /**
-     * this getFileReader() method gets the file reader for reading the journal entries.
-     * @return the file reader.
-     */
-
-    public static FileReader getFileReader() {
-        return fileReader;
-    }
-
-    /**
-     * this setFileReader() method sets the file reader for reading the journal entries.
-     * @param fileReader the file reader being set.
-     */
-
-    public static void setFileReader(FileReader fileReader) {
-        Journal.fileReader = fileReader;
+    public void setFileHandler(File fileHandler) {
+        this.fileHandler = fileHandler;
     }
 
     /**
@@ -110,7 +92,7 @@ public class Journal {
      * @return the error message.
      */
 
-    public static String getErrorMessage() {
+    public String getErrorMessage() {
         return errorMessage;
     }
 
@@ -119,26 +101,8 @@ public class Journal {
      * @param errorMessage the error message being set.
      */
 
-    public static void setErrorMessage(String errorMessage) {
-        Journal.errorMessage = errorMessage;
-    }
-
-    /**
-     * this getReadJournalEntry() method gets the text that was read from the journal entry.
-     * @return the text that was read from the journal entry.
-     */
-
-    public static String getReadJournalEntry() {
-        return readJournalEntry;
-    }
-
-    /**
-     * this setReadJournalEntry() method sets the text that was read from the journal entry.
-     * @param readJournalEntry the text that was read from the journal entry being set.
-     */
-
-    public static void setReadJournalEntry(String readJournalEntry) {
-        Journal.readJournalEntry += readJournalEntry;
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     /**
@@ -178,26 +142,16 @@ public class Journal {
      * @return what was read from the journal entry.
      */
 
-    // To-Do: fix this method.
-
-    public static String readJournalEntry(String name) {
-        setJournalEntryName(name);
-        int s;
+    public String readJournalEntry(String name) {
+        String test;
         try {
-            setFileHandler(new File(new File(getJournalEntryName()).getAbsolutePath()));
-            setFileReader(new FileReader(getFileHandler()));
-            BufferedReader br = new BufferedReader(getFileReader());
-            while ((s = br.read()) != -1) {
-                setReadJournalEntry(String.valueOf((char) s)); // make sure every line from the file gets read and printed out.
-            }
-            getFileReader().close();
-            br.close();
+            test = new String(Files.readAllBytes(Paths.get(name.concat(".txt"))));
         }
         catch (Exception e) {
             setErrorMessage("Error. The journal entry could not be read.");
             return getErrorMessage();
         }
-        return getReadJournalEntry();
+        return test;
     }
 
     /**
@@ -206,25 +160,15 @@ public class Journal {
      */
 
     public ArrayList<String> viewJournalEntries() {
-        try {
-            setFileHandler(new File(System.getProperty("user.dir")));
-            File[] files = getFileHandler().listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.getName().endsWith(".txt")) {
-                        getListOfFiles().add(file.getName() + "\n");
-                    }
+        setFileHandler(new File(System.getProperty("user.dir")));
+        File[] files = getFileHandler().listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.getName().endsWith(".txt")) {
+                    getListOfFiles().add(file.getName() + "\n");
                 }
             }
         }
-        catch (Exception e) {
-            setErrorMessage("Error. The journal entries could not be viewed.");
-            // To-Do: try to make sure the error message gets returned if something goes wrong.
-        }
         return getListOfFiles();
-    }
-
-    public static void main(String[] args) {
-        readJournalEntry("test");
     }
 }
