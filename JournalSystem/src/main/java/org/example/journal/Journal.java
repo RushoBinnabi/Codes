@@ -16,14 +16,13 @@ public class Journal {
 
     // this Journal file has the name and the functionality of the journal files that will be used for the journal entries.
 
-    private String journalEntryName;
-    private File fileHandler;
+    private static String journalEntryName;
+    private static File fileHandler;
     private FileWriter fileWriter;
-    private String errorMessage;
+    private static String errorMessage;
     private final ArrayList<String> listOfFiles = new ArrayList<>();
     public static double SCREEN_WIDTH = 800.0;
     public static double SCREEN_HEIGHT = 500.0;
-
 
     /**
      * empty Journal Constructor.
@@ -38,7 +37,7 @@ public class Journal {
      * @return the name of the journal entry.
      */
 
-    public String getJournalEntryName() {
+    public static String getJournalEntryName() {
         return journalEntryName;
     }
 
@@ -47,8 +46,8 @@ public class Journal {
      * @param journalEntryName the name of the journal entry being set.
      */
 
-    public void setJournalEntryName(String journalEntryName) {
-        this.journalEntryName = journalEntryName.concat(".txt"); // adds a text file extension so that users won't have to.
+    public static void setJournalEntryName(String journalEntryName) {
+        Journal.journalEntryName = journalEntryName.concat(".txt"); // adds a text file extension so that users won't have to.
     }
 
     /**
@@ -56,7 +55,7 @@ public class Journal {
      * @return the file handler.
      */
 
-    public File getFileHandler() {
+    public static File getFileHandler() {
         return fileHandler;
     }
 
@@ -65,8 +64,8 @@ public class Journal {
      * @param fileHandler the journal entry files being set for the file handler.
      */
 
-    public void setFileHandler(File fileHandler) {
-        this.fileHandler = fileHandler;
+    public static void setFileHandler(File fileHandler) {
+        Journal.fileHandler = fileHandler;
     }
 
     /**
@@ -92,7 +91,7 @@ public class Journal {
      * @return the error message.
      */
 
-    public String getErrorMessage() {
+    public static String getErrorMessage() {
         return errorMessage;
     }
 
@@ -101,8 +100,8 @@ public class Journal {
      * @param errorMessage the error message being set.
      */
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public static void setErrorMessage(String errorMessage) {
+        Journal.errorMessage = errorMessage;
     }
 
     /**
@@ -170,5 +169,40 @@ public class Journal {
             }
         }
         return getListOfFiles();
+    }
+
+    /**
+     * this deleteJournalEntry() method deletes a journal entry.
+     * @param name the name of the file to be deleted.
+     * @return the name of the file that was deleted.
+     */
+
+    public String deleteJournalEntry(String name) {
+        if (name.isEmpty()) {
+            setErrorMessage("Error. The journal entry could not be deleted because it doesn't exist.");
+            return getErrorMessage();
+        }
+        else {
+            setJournalEntryName(name);
+            try {
+                setFileHandler(new File(getJournalEntryName()));
+                if (getFileHandler().getName().equals(getJournalEntryName())) {
+                    if (getFileHandler().exists()) {
+                        getFileHandler().delete(); // the result gets ignored because the filename of the deleted file gets returned instead.
+                    }
+                    else {
+                        setErrorMessage("Error. The journal entry already has been deleted.");
+                        return getErrorMessage();
+                    }
+                }
+            }
+            catch (Exception e) {
+                setErrorMessage("Error. The journal entry could not be deleted.");
+                return getErrorMessage();
+            }
+        }
+        setErrorMessage(getJournalEntryName() + " journal entry has been successfully deleted."); // the error message prompt gets reused to tell the user
+                                                                                                    // if the journal entry was successfully deleted or not.
+        return getErrorMessage();
     }
 }

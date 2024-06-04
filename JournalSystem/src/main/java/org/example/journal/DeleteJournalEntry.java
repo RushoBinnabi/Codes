@@ -136,6 +136,6 @@ public class DeleteJournalEntry extends Application {
     }
 
     private void deleteEntry() {
-        getDeleteJournalEntryConfirmation().setText("In development"); // remove this with actual button functionality.
+        getDeleteJournalEntryTextArea().setText(getJournal().deleteJournalEntry(getDeleteJournalEntryTextField().getText()));
     }
 }
