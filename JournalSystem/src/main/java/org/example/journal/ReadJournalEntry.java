@@ -12,13 +12,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class ReadJournalEntry extends Application {
 
     private Scene readJournalEntryScene;
     private Stage readJournalEntryStage;
     private final Button backToMainMenu = new Button();
     private final GridPane readJournalEntriesScreen = new GridPane();
-    private String openJournalEntriesNames;
     private final TextArea readJournalEntries = new TextArea();
     private final Journal journal = new Journal();
     private final Button readJournalEntryButton = new Button();
@@ -28,7 +29,6 @@ public class ReadJournalEntry extends Application {
     private final HBox readJournalEntryFields = new HBox();
     private final TextArea readJournalEntryTextArea = new TextArea();
     private final VBox readJournalEntryVbox = new VBox();
-    private final Label readJournalEntryConfirmation = new Label();
 
     public Button getBackToMainMenu() {
         return backToMainMenu;
@@ -40,10 +40,6 @@ public class ReadJournalEntry extends Application {
 
     public TextArea getReadJournalEntries() {
         return readJournalEntries;
-    }
-
-    public String getOpenJournalEntriesNames() {
-        return openJournalEntriesNames;
     }
 
     public Journal getJournal() {
@@ -78,10 +74,6 @@ public class ReadJournalEntry extends Application {
         return readJournalEntryVbox;
     }
 
-    public Label getReadJournalEntryConfirmation() {
-        return readJournalEntryConfirmation;
-    }
-
     public Scene getReadJournalEntryScene() {
         return readJournalEntryScene;
     }
@@ -111,7 +103,7 @@ public class ReadJournalEntry extends Application {
         getReadJournalEntryFields().getChildren().addAll(getReadJournalEntryLabel(), getReadJournalEntryTextField());
         getReadJournalEntryFields().setSpacing(12);
         getReadJournalEntryFields().setAlignment(Pos.CENTER);
-        getReadJournalEntryVbox().getChildren().addAll(getReadJournalEntryTextArea(), getReadJournalEntryFields(), getButtonsHbox(), getReadJournalEntryConfirmation());
+        getReadJournalEntryVbox().getChildren().addAll(getReadJournalEntryFields(), getReadJournalEntryTextArea(), getButtonsHbox());
         getReadJournalEntryVbox().setSpacing(18);
         getReadJournalEntryVbox().setAlignment(Pos.CENTER);
         getReadJournalEntriesScreen().add(getReadJournalEntryVbox(), 0, 0);
@@ -126,9 +118,7 @@ public class ReadJournalEntry extends Application {
     }
 
     private void readEntry() {
-        getReadJournalEntryConfirmation().setScaleX(1.3);
-        getReadJournalEntryConfirmation().setScaleY(1.3);
-        getReadJournalEntryConfirmation().setText("In development");
+        getReadJournalEntryTextArea().setText(getJournal().readJournalEntry(getReadJournalEntryTextField().getText()));
     }
 
     private void mainMenu() {
