@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class DeleteJournalEntry extends Application {
 
     private Scene deleteJournalEntryScene;
@@ -114,6 +116,14 @@ public class DeleteJournalEntry extends Application {
         getDeleteJournalEntryVbox().getChildren().addAll(getDeleteJournalEntryTextArea(), getDeleteJournalEntryFields(), getButtonsHbox(), getDeleteJournalEntryConfirmation());
         getDeleteJournalEntryVbox().setSpacing(18);
         getDeleteJournalEntryVbox().setAlignment(Pos.CENTER);
+        ArrayList<String> files = new ArrayList<>(getJournal().viewJournalEntries());
+        getDeleteJournalEntryTextArea().setEditable(false);
+        if (files.isEmpty()) {
+            getDeleteJournalEntryTextArea().setText("No journal entries available");
+        }
+        else {
+            getDeleteJournalEntryTextArea().setText(String.valueOf(files).replaceAll(",", "").replace('[', ' ').replaceAll("]", ""));
+        }
         getDeleteJournalEntryButton().setOnAction(e -> deleteEntry());
         getBackToMainMenu().setOnAction(e -> mainMenu());
         getDeleteJournalEntriesScreen().add(getDeleteJournalEntryVbox(), 0, 0);
@@ -136,6 +146,8 @@ public class DeleteJournalEntry extends Application {
     }
 
     private void deleteEntry() {
-        getDeleteJournalEntryTextArea().setText(getJournal().deleteJournalEntry(getDeleteJournalEntryTextField().getText()));
+        getDeleteJournalEntryConfirmation().setScaleX(1.3);
+        getDeleteJournalEntryConfirmation().setScaleY(1.3);
+        getDeleteJournalEntryConfirmation().setText(getJournal().deleteJournalEntry(getDeleteJournalEntryTextField().getText()));
     }
 }

@@ -124,15 +124,27 @@ public class Journal {
         setJournalEntryName(name);
         try {
             setFileHandler(new File(getJournalEntryName()));
-            setFileWriter(new FileWriter(getFileHandler()));
-            getFileWriter().write(contents);
-            getFileWriter().close();
+            if (contents.isEmpty() && !name.isEmpty()) {
+                setFileWriter(new FileWriter(getFileHandler()));
+                getFileWriter().write(contents);
+                setErrorMessage("Empty Journal Entry Created");
+                getFileWriter().close();
+            }
+            else if (name.isEmpty()) {
+                setErrorMessage("Journal Entry Name Is Empty");
+            }
+            else {
+                setFileWriter(new FileWriter(getFileHandler()));
+                getFileWriter().write(contents);
+                setErrorMessage("Journal Entry Created");
+                getFileWriter().close();
+            }
         }
         catch (Exception e) {
             setErrorMessage("Error. The journal entry could not be created.");
             return getErrorMessage();
         }
-        return getJournalEntryName();
+        return getErrorMessage();
     }
 
     /**
@@ -179,30 +191,28 @@ public class Journal {
 
     public String deleteJournalEntry(String name) {
         if (name.isEmpty()) {
-            setErrorMessage("Error. The journal entry could not be deleted because it doesn't exist.");
+            setErrorMessage("Error. The journal entry could not be deleted because it doesn't exist");
             return getErrorMessage();
         }
         else {
             setJournalEntryName(name);
             try {
                 setFileHandler(new File(getJournalEntryName()));
-                if (getFileHandler().getName().equals(getJournalEntryName())) {
-                    if (getFileHandler().exists()) {
-                        getFileHandler().delete(); // the result gets ignored because the filename of the deleted file gets returned instead.
-                    }
-                    else {
-                        setErrorMessage("Error. The journal entry already has been deleted.");
-                        return getErrorMessage();
-                    }
+                if (getFileHandler().exists()) {
+                    getFileHandler().delete(); // the result gets ignored because there's no need for it.
+                }
+                else {
+                    setErrorMessage("Error. The journal entry has already been deleted");
+                    return getErrorMessage();
                 }
             }
             catch (Exception e) {
-                setErrorMessage("Error. The journal entry could not be deleted.");
+                setErrorMessage("Error. The journal entry could not be deleted");
                 return getErrorMessage();
             }
         }
-        setErrorMessage(getJournalEntryName() + " journal entry has been successfully deleted."); // the error message prompt gets reused to tell the user
-                                                                                                    // if the journal entry was successfully deleted or not.
+        setErrorMessage("Journal entry has been successfully deleted"); // the error message prompt gets reused to tell the user
+                                                                        // if the journal entry was successfully deleted or not.
         return getErrorMessage();
     }
 }

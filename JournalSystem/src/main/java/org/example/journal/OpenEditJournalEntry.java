@@ -14,14 +14,12 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class OpenJournalEntry extends Application {
+public class OpenEditJournalEntry extends Application {
 
     private Scene openJournalEntryScene;
     private Stage openJournalEntryStage;
     private final Button backToMainMenu = new Button();
     private final GridPane openJournalEntriesScreen = new GridPane();
-    private String openJournalEntriesNames;
-    private final TextArea viewJournalEntries = new TextArea();
     private final Journal journal = new Journal();
     private final Button openJournalEntryButton = new Button();
     private final HBox buttonsHbox = new HBox();
@@ -31,6 +29,7 @@ public class OpenJournalEntry extends Application {
     private final TextArea openJournalEntryTextArea = new TextArea();
     private final VBox openJournalEntryVbox = new VBox();
     private final Label openJournalEntryConfirmation = new Label();
+    private final Button saveJournalEntryButton = new Button();
 
     public Button getBackToMainMenu() {
         return backToMainMenu;
@@ -38,14 +37,6 @@ public class OpenJournalEntry extends Application {
 
     public Button getOpenJournalEntryButton() {
         return openJournalEntryButton;
-    }
-
-    public TextArea getViewJournalEntries() {
-        return viewJournalEntries;
-    }
-
-    public String getOpenJournalEntriesNames() {
-        return openJournalEntriesNames;
     }
 
     public Journal getJournal() {
@@ -100,14 +91,18 @@ public class OpenJournalEntry extends Application {
         this.openJournalEntryStage = openJournalEntryStage;
     }
 
+    public Button getSaveJournalEntryButton() {
+        return saveJournalEntryButton;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         setOpenJournalEntryStage(primaryStage);
         getOpenJournalEntryButton().setText("Open Journal Entry");
         getBackToMainMenu().setText("Back to Main Menu");
         getOpenJournalEntryLabel().setText("Enter Journal Entry Name:");
-        getOpenJournalEntryTextArea().setEditable(false);
-        getButtonsHbox().getChildren().addAll(getOpenJournalEntryButton(), getBackToMainMenu());
+        getSaveJournalEntryButton().setText("Save Journal Entry");
+        getButtonsHbox().getChildren().addAll(getOpenJournalEntryButton(), getSaveJournalEntryButton(), getBackToMainMenu());
         getButtonsHbox().setSpacing(12);
         getButtonsHbox().setAlignment(Pos.CENTER);
         getOpenJournalEntryFields().getChildren().addAll(getOpenJournalEntryLabel(), getOpenJournalEntryTextField());
@@ -115,15 +110,20 @@ public class OpenJournalEntry extends Application {
         getOpenJournalEntryFields().setAlignment(Pos.CENTER);
         getOpenJournalEntryTextArea().setScaleX(1.3);
         getOpenJournalEntryTextArea().setScaleY(1.3);
-        getOpenJournalEntryVbox().getChildren().addAll(getOpenJournalEntryTextArea(), getOpenJournalEntryFields(), getButtonsHbox(), getOpenJournalEntryConfirmation());
+        getOpenJournalEntryVbox().getChildren().addAll(getOpenJournalEntryFields(), getOpenJournalEntryTextArea(), getButtonsHbox(), getOpenJournalEntryConfirmation());
         getOpenJournalEntryVbox().setSpacing(45);
         getOpenJournalEntryVbox().setAlignment(Pos.CENTER);
         getOpenJournalEntriesScreen().add(getOpenJournalEntryVbox(), 0, 0);
-        ArrayList<String> files = getJournal().viewJournalEntries();
-        if (files != null) {
+        ArrayList<String> files = new ArrayList<>(getJournal().viewJournalEntries());
+        getOpenJournalEntryTextArea().setEditable(false);
+        if (files.isEmpty()) {
+            getOpenJournalEntryTextArea().setText("No journal entries available");
+        }
+        else {
             getOpenJournalEntryTextArea().setText(String.valueOf(files).replaceAll(",", "").replace('[', ' ').replaceAll("]", ""));
         }
         getOpenJournalEntryButton().setOnAction(e -> openEntry());
+        getSaveJournalEntryButton().setOnAction(e -> saveEntry());
         getBackToMainMenu().setOnAction(e -> mainMenu());
         getOpenJournalEntriesScreen().setVgap(18);
         getOpenJournalEntriesScreen().setAlignment(Pos.CENTER);
@@ -137,11 +137,21 @@ public class OpenJournalEntry extends Application {
         launch(args);
     }
 
-
-    private void openEntry() {
+    private void saveEntry() {
+        String input = getOpenJournalEntryTextArea().getText();
+        String name = getOpenJournalEntryTextField().getText();
         getOpenJournalEntryConfirmation().setScaleX(1.3);
         getOpenJournalEntryConfirmation().setScaleY(1.3);
-        getOpenJournalEntryConfirmation().setText("In development");
+        getJournal().createJournalEntry(name, input); // the filename that gets returned gets ignored here because there's no need for it.
+                                                        // the function for creating journal entries gets reused for saving the journal entries.
+        getOpenJournalEntryConfirmation().setText("Journal Entry Saved");
+    }
+
+
+    private void openEntry() {
+        String input = getOpenJournalEntryTextField().getText();
+        getOpenJournalEntryTextArea().setEditable(true);
+        getOpenJournalEntryTextArea().setText(getJournal().readJournalEntry(input)); // the function for reading journal entries gets reused for opening journal entries.
     }
 
     private void mainMenu() {

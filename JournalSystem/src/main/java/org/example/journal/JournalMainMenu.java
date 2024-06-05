@@ -26,7 +26,7 @@ public class JournalMainMenu extends Application {
     private Stage journalSystemStage;
     private final CreateJournalEntry createJournalEntry = new CreateJournalEntry();
     private final  DeleteJournalEntry deleteJournalEntry = new DeleteJournalEntry();
-    private final OpenJournalEntry openJournalEntry = new OpenJournalEntry();
+    private final OpenEditJournalEntry openEditJournalEntry = new OpenEditJournalEntry();
     private final ReadJournalEntry readJournalEntry = new ReadJournalEntry();
     private final ViewJournalEntries viewJournalEntries = new ViewJournalEntries();
     private final StackPane mainMenuScreen = new StackPane();
@@ -175,8 +175,8 @@ public class JournalMainMenu extends Application {
      * @return the OpenJournalEntry object.
      */
 
-    public OpenJournalEntry getOpenJournalEntry() {
-        return openJournalEntry;
+    public OpenEditJournalEntry getOpenEditJournalEntry() {
+        return openEditJournalEntry;
     }
 
     /**
@@ -217,7 +217,7 @@ public class JournalMainMenu extends Application {
         getCreateJournalEntryButton().setText("Create Journal Entry");
         getViewJournalEntriesButton().setText("View Journal Entries");
         getDeleteJournalEntriesButton().setText("Delete Journal Entry");
-        getOpenJournalEntryButton().setText("Open Journal Entry");
+        getOpenJournalEntryButton().setText("Open/Edit Journal Entry");
         getReadJournalEntryButton().setText("Read Journal Entry");
         getMainMenuTitle().setText("Select one of the following:");
         getMainMenuTitle().setScaleX(1.5);
@@ -280,7 +280,7 @@ public class JournalMainMenu extends Application {
 
     private void switchToOpenJournalEntryScreen() {
         getJournalSystemStage().close();
-        getOpenJournalEntry().start(new Stage());
+        getOpenEditJournalEntry().start(new Stage());
     }
 
     /**

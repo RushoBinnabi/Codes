@@ -307,6 +307,8 @@ public class CreateJournalEntry extends Application {
         getCreateJournalEntryButtonsHBox().setAlignment(Pos.CENTER);
         getCreateJournalEntryScreen().setVgap(20);
         getCreateJournalEntryScreen().setAlignment(Pos.CENTER);
+        getCreateJournalEntryConfirmation().setScaleX(1.3);
+        getCreateJournalEntryConfirmation().setScaleY(1.3);
         getCreateJournalEntry().setOnAction(e -> createEntry());
         getBackToMainMenu().setOnAction(actionEvent -> mainMenu());
         setCreateJournalEntryScene(new Scene(getCreateJournalEntryScreen(), Journal.SCREEN_WIDTH, Journal.SCREEN_HEIGHT));
@@ -322,18 +324,7 @@ public class CreateJournalEntry extends Application {
     private void createEntry() {
         setContents(getCreateJournalEntryInput().getText());
         setName(getCreateJournalEntryFilenameInput().getText());
-        if (getContents().isEmpty() || getName().isEmpty()) {
-            getCreateJournalEntryConfirmation().setScaleX(1.3);
-            getCreateJournalEntryConfirmation().setScaleY(1.3);
-            getCreateJournalEntryConfirmation().setText("Journal Entry Or Journal Entry Name Is Empty");
-        }
-        else {
-            setFileName(getJournal().createJournalEntry(getName(), getContents()));
-            getCreateJournalEntryFilenameLabel().setText(getFileName());
-            getCreateJournalEntryConfirmation().setScaleX(1.3);
-            getCreateJournalEntryConfirmation().setScaleY(1.3);
-            getCreateJournalEntryConfirmation().setText("Journal Entry Created");
-        }
+        getCreateJournalEntryConfirmation().setText(getJournal().createJournalEntry(getName(), getContents()));
     }
 
     /**
