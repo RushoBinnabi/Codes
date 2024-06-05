@@ -1,3 +1,10 @@
+/**
+ * Name: Rusho Binnabi
+ * Date: 6/5/2024
+ * Project: Journaling System - ViewJournalEntries
+ * Contact Information: RushoBinnabi123@yahoo.com
+ */
+
 package org.example.journal;
 
 import javafx.application.Application;
@@ -12,6 +19,8 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class ViewJournalEntries extends Application {
+
+    // this ViewJournalEntries file has the menu for viewing journal entries.
 
     private Scene viewJournalEntriesScene;
     private Stage viewJournalEntriesStage;

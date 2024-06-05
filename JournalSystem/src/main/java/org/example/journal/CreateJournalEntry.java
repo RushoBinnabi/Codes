@@ -41,7 +41,6 @@ public class CreateJournalEntry extends Application {
     private final VBox createJournalEntryConfirmationVBox = new VBox();
     private String name;
     private String contents;
-    private String fileName;
 
     /**
      * this getCreateJournalEntry() method gets the Button object that will create the journal entry when pressed.
@@ -252,24 +251,6 @@ public class CreateJournalEntry extends Application {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * this getFileName() method gets the filename of the journal entry after it gets created.
-     * @return the filename of the journal entry after it gets created.
-     */
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    /**
-     * this setFileName() method sets the filename of the journal entry after it gets created.
-     * @param fileName the filename of the journal entry after it gets created.
-     */
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     /**
