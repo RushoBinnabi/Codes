@@ -31,49 +31,109 @@ public class ViewJournalEntries extends Application {
     private final VBox vbox = new VBox();
     private ArrayList<String> files;
 
+    /**
+     * this getBackToMainMenu() method gets the Button object for the main menu.
+     * @return the Button object for the main menu.
+     */
+
     public Button getBackToMainMenu() {
         return backToMainMenu;
     }
+
+    /**
+     * this getViewJournalEntriesScreen() method gets the GridPane object that has the screen for the menu.
+     * @return the GridPane object that has the screen for the menu.
+     */
 
     public GridPane getViewJournalEntriesScreen() {
         return viewJournalEntriesScreen;
     }
 
+    /**
+     * this getViewJournalEntries() method gets the TextArea object that shows the list of journal entries.
+     * @return the TextArea that shows the list of journal entries.
+     */
+
     public TextArea getViewJournalEntries() {
         return viewJournalEntries;
     }
+
+    /**
+     * this getJournal() method gets the Journal object that has the functionality for the journaling system.
+     * @return the Journal object that has the functionality for the journaling system.
+     */
 
     public Journal getJournal() {
         return journal;
     }
 
+    /**
+     * this getVbox() method gets the VBox object that has everything arranged for the menu.
+     * @return the VBox object that has everything arranged for the menu.
+     */
+
     public VBox getVbox() {
         return vbox;
     }
+
+    /**
+     * this getViewJournalEntriesScreen() method gets the Scene object for the menu.
+     * @return the Scene object for the menu.
+     */
 
     public Scene getViewJournalEntriesScene() {
         return viewJournalEntriesScene;
     }
 
+    /**
+     * this getViewJournalEntriesStage() method gets the Stage object for the menu.
+     * @return the Stage object for the menu.
+     */
+
     public Stage getViewJournalEntriesStage() {
         return viewJournalEntriesStage;
     }
+
+    /**
+     * this setViewJournalEntriesScene() method sets the Scene for the menu.
+     * @param viewJournalEntriesScene the Scene for the menu being set.
+     */
 
     public void setViewJournalEntriesScene(Scene viewJournalEntriesScene) {
         this.viewJournalEntriesScene = viewJournalEntriesScene;
     }
 
+    /**
+     * this setViewJournalEntriesStage() method sets the Stage for the menu.
+     * @param viewJournalEntriesStage the Stage for the menu being set.
+     */
+
     public void setViewJournalEntriesStage(Stage viewJournalEntriesStage) {
         this.viewJournalEntriesStage = viewJournalEntriesStage;
     }
+
+    /**
+     * this getFiles() method gets the ArrayList of files for the journal entries.
+     * @return the ArrayList of files for the journal entries.
+     */
 
     public ArrayList<String> getFiles() {
         return files;
     }
 
+    /**
+     * this setFiles() method sets the ArrayList of files to a new ArrayList of files for the journal entries.
+     * @param files the ArrayList of files for the journal entries being set.
+     */
+
     public void setFiles(ArrayList<String> files) {
         this.files = new ArrayList<>(files);
     }
+
+    /**
+     * this stage() method has everything needed for the menu for viewing journal entries.
+     * @param primaryStage the stage for the menu for viewing journal entries.
+     */
 
     @Override
     public void start(Stage primaryStage) {
@@ -95,6 +155,10 @@ public class ViewJournalEntries extends Application {
         getViewJournalEntriesStage().show();
     }
 
+    /**
+     * this getEntries() method gets the list of journal entries that can be viewed.
+     */
+
     private void getEntries() {
         setFiles(getJournal().viewJournalEntries());
         if (getFiles().isEmpty()) {
@@ -105,11 +169,21 @@ public class ViewJournalEntries extends Application {
         }
     }
 
+    /**
+     * this mainMenu() method redirects the screen to the main menu when the appropriate button is clicked.
+     * it also closes the screen for viewing journal entries.
+     */
+
     private void mainMenu() {
         getViewJournalEntriesStage().close();
         JournalMainMenu journalMainMenu = new JournalMainMenu();
         journalMainMenu.start(new Stage());
     }
+
+    /**
+     * this main() method runs the program.
+     * @param args the program being run.
+     */
 
     public static void main(String[] args) {
         launch(args);

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class OpenEditJournalEntry extends Application {
 
-    // this OpenEditJournalEntry file has the menu for opening and editing journal entries.
+    // this OpenEditJournalEntry class file has the menu for opening and editing journal entries.
 
     private Scene openJournalEntryScene;
     private Stage openJournalEntryStage;

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 public class JournalMainMenu extends Application {
 
-    // this JournalSystem class creates a GUI using the JavaFX library
+    // this JournalSystem class file creates a GUI using the JavaFX library
     // for displaying the main menu for the journaling system.
 
     private Scene journalSystemScene;

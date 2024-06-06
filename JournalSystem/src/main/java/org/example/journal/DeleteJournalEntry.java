@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class DeleteJournalEntry extends Application {
 
-    // this DeleteJournalEntry file has the menu for deleting journal entries.
+    // this DeleteJournalEntry class file has the menu for deleting journal entries.
 
     private Scene deleteJournalEntryScene;
     private Stage deleteJournalEntryStage;

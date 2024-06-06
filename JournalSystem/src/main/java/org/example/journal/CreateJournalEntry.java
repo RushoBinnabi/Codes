@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 public class CreateJournalEntry extends Application {
 
-    // this CreateJournalEntry file has the menu for creating journal entries.
+    // this CreateJournalEntry class file has the menu for creating journal entries.
 
     private Stage createJournalEntryStage;
     private Scene createJournalEntryScene;

@@ -1,3 +1,10 @@
+/**
+ * Name: Rusho Binnabi
+ * Date: 6/6/2024
+ * Project: Journal System - ReadJournalEntry
+ * Contact Information: RushoBinnabi123@yahoo.com
+ */
+
 package org.example.journal;
 
 import javafx.application.Application;
@@ -12,15 +19,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 public class ReadJournalEntry extends Application {
 
-    private Scene readJournalEntryScene;
+    // this ReadJournalEntry claas file has the menu for reading journal entries.
+
     private Stage readJournalEntryStage;
     private final Button backToMainMenu = new Button();
     private final GridPane readJournalEntriesScreen = new GridPane();
-    private final TextArea readJournalEntries = new TextArea();
     private final Journal journal = new Journal();
     private final Button readJournalEntryButton = new Button();
     private final HBox buttonsHbox = new HBox();
@@ -30,65 +35,122 @@ public class ReadJournalEntry extends Application {
     private final TextArea readJournalEntryTextArea = new TextArea();
     private final VBox readJournalEntryVbox = new VBox();
 
+    /**
+     * this getBackToMainMenu() method gets the Button object for the main menu.
+     * @return the Button object for the main menu.
+     */
+
     public Button getBackToMainMenu() {
         return backToMainMenu;
     }
+
+    /**
+     * this getReadJournalEntryButton() method gets the Button object for reading journal entries.
+     * @return the Button object for reading journal entries.
+     */
 
     public Button getReadJournalEntryButton() {
         return readJournalEntryButton;
     }
 
-    public TextArea getReadJournalEntries() {
-        return readJournalEntries;
-    }
+    /**
+     * this getJournal() method gets the Journal object that has the functionality for the journaling system.
+     * @return the Journal object that has the functionality for the journaling system.
+     */
 
     public Journal getJournal() {
         return journal;
     }
 
+    /**
+     * this getReadJournalEntriesScreen() method gets the GridPane object that has the screen for the menu.
+     * @return the GridPane object that has the screen for the menu.
+     */
+
     public GridPane getReadJournalEntriesScreen() {
         return readJournalEntriesScreen;
     }
+
+    /**
+     * this getButtonsHbox() method gets the HBox object that has the arrangement of the Button objects.
+     * @return the HBox object that has the arrangement of the Button objects.
+     */
 
     public HBox getButtonsHbox() {
         return buttonsHbox;
     }
 
+    /**
+     * this getReadJournalEntryLabel() method gets the Label object that tells the user to
+     * enter the name of the journal entry that will be read.
+     * @return the Label object that tells the user to enter the name of the journal entry that will be read.
+     */
+
     public Label getReadJournalEntryLabel() {
         return readJournalEntryLabel;
     }
+
+    /**
+     * this getReadJournalEntryTextField() method gets the TextField object that gets the input
+     * from the user for the name of the journal entry that will be read.
+     * @return the TextField object that gets the input from the user for the name of the journal entry that will be read.
+     */
 
     public TextField getReadJournalEntryTextField() {
         return readJournalEntryTextField;
     }
 
+
+    /**
+     * this getReadJournalEntryFields() method gets the HBox object that has the arrangement for the inputs.
+     * @return the HBox object that has the arrangement for the inputs.
+     */
+
     public HBox getReadJournalEntryFields() {
         return readJournalEntryFields;
     }
+
+    /**
+     * this getReadJournalEntryTextArea() method gets the TextArea object that will
+     * show the contents of the journal entry being read.
+     * @return the TextArea object that will show the contents of the journal entry being read.
+     */
 
     public TextArea getReadJournalEntryTextArea() {
         return readJournalEntryTextArea;
     }
 
+    /**
+     * this getReadJournalEntryVbox() method gets the VBox object that has the arrangement for the menu.
+     * @return the VBox object that has the arrangement for the menu.
+     */
+
     public VBox getReadJournalEntryVbox() {
         return readJournalEntryVbox;
     }
 
-    public Scene getReadJournalEntryScene() {
-        return readJournalEntryScene;
-    }
+    /**
+     * this getReadJournalEntryStage() method gets the Stage object for the menu.
+     * @return the Stage object for the menu.
+     */
 
     public Stage getReadJournalEntryStage() {
         return readJournalEntryStage;
     }
 
-    public void setReadJournalEntryScene(Scene readJournalEntryScene) {
-        this.readJournalEntryScene = readJournalEntryScene;
-    }
+    /**
+     * this setReadJournalEntryStage() method sets the stage for the menu.
+     * @param readJournalEntryStage the stage for the menu being set.
+     */
 
     public void setReadJournalEntryStage(Stage readJournalEntryStage) {
         this.readJournalEntryStage = readJournalEntryStage;
     }
+
+    /**
+     * this start() method has everything needed for the menu for reading journal entries.
+     * @param primaryStage the stage for the menu for reading journal entries.
+     */
 
     @Override
     public void start(Stage primaryStage) {
@@ -117,15 +179,29 @@ public class ReadJournalEntry extends Application {
         primaryStage.show();
     }
 
+    /**
+     * this readEntry() method reads the journal entries.
+     */
+
     private void readEntry() {
         getReadJournalEntryTextArea().setText(getJournal().readJournalEntry(getReadJournalEntryTextField().getText()));
     }
+
+    /**
+     * this mainMenu() method redirects the screen to the main menu when the appropriate button is clicked.
+     * it also closes the screen for reading journal entries.
+     */
 
     private void mainMenu() {
         getReadJournalEntryStage().close();
         JournalMainMenu journalMainMenu = new JournalMainMenu();
         journalMainMenu.start(new Stage());
     }
+
+    /**
+     * this main() method runs the program.
+     * @param args the program being run.
+     */
 
     public static void main(String[] args) {
         launch(args);

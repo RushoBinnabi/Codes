@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Journal {
 
-    // this Journal file has the name and the functionality of the journal files that will be used for the journal entries.
+    // this Journal class file has the name and the functionality of the journal files that will be used for the journal entries.
 
     private static String journalEntryName;
     private static File fileHandler;
