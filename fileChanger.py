@@ -9,14 +9,14 @@
 
 import os
 
-def changeFileExtension(directory, oldExtension, newExtension):
+def changeFileExtension(directory, oldFileExtension, newFileExtension):
     for file in os.listdir(directory):
-        if file.endswith(oldExtension):
-            obj = os.path.splitext(file)[0]
-            ext = os.path.splitext(file)[1]
-            os.rename(obj + ext, obj + newExtension)
+        if file.endswith(oldFileExtension):
+            oldFileName = os.path.splitext(file)[0]
+            oldFileExtension = os.path.splitext(file)[1]
+            os.rename(oldFileName + oldFileExtension, oldFileName + newFileExtension)
 
-folder = input("Enter Directory Name: ")
+folder = input("Enter Directory Path: ")
 oldFileExtension = input("Enter Old File Extension: ")
 newFileExtension = input("Enter New File Extension: ")
 
