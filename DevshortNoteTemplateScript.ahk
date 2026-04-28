@@ -7,5 +7,5 @@
 ; launch this script first before using DevshortNoteTemplate.pyw to ensure proper functionality.
 
 ^4:: { ; replace ^4 with your desired hotkey combination (e.g., ^1 for Ctrl+1).
-    Run("C:\Users\RushoBinnabi\Desktop\DevshortNoteTemplateScript.pyw") ; replace the string with the path to the Python script.
+    Run("C:\Users\RushoBinnabi\Documents\GitHub\Codes\DevshortNoteTemplateScript.pyw") ; replace the string with the path to the Python script.
 }

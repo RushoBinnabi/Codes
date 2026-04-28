@@ -30,6 +30,14 @@ def devshortTemplate():
     for i in range(0, 3):
         bot.hotkey("enter")
 
+    controlB()
+    bot.write("Misc:")
+    bot.hotkey("enter")
+    bot.write("- Jade")
+
+    for i in range(0, 3):
+        bot.hotkey("enter")
+
     bot.write("Disclaimer: Information marked with * is a joke.")
 
 
