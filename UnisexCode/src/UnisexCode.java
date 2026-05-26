@@ -109,7 +109,7 @@ public class UnisexCode {
      */
 
     public String getHexcodeFromUnicode() {
-        String word = getUniCodeText();
+        String word = getPlainText();
         StringBuilder hexWord = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
             hexWord.append(Integer.toHexString(i));
