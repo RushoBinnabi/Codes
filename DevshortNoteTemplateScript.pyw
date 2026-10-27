@@ -17,7 +17,7 @@ def devshortTemplate():
     controlB()
     bot.write("Warframe:")
     bot.hotkey("enter")
-    bot.write("- Jade")
+    bot.write("- Jade[PH].")
 
     for i in range(0, 3):
         bot.hotkey("enter")
@@ -25,7 +25,7 @@ def devshortTemplate():
     controlB()
     bot.write("Soulframe:")
     bot.hotkey("enter")
-    bot.write("- Jade")
+    bot.write("- Jade[PH].")
 
     for i in range(0, 3):
         bot.hotkey("enter")
@@ -33,12 +33,12 @@ def devshortTemplate():
     controlB()
     bot.write("Misc:")
     bot.hotkey("enter")
-    bot.write("- Jade")
+    bot.write("- Jade[PH].")
 
     for i in range(0, 3):
         bot.hotkey("enter")
 
-    bot.write("Disclaimer: Information marked with * is a joke.")
+    bot.write("Disclaimer: Information marked with * is a joke. Information marked with italics is my own thoughts.")
 
 
 devshortTemplate()
